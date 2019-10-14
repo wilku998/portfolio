@@ -13,9 +13,15 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
   },
   "dependencies": {
+    "@nfront/global-styles": "^1.2.1",
+    "babel-plugin-styled-components": "^1.10.6",
     "gatsby": "^2.15.34",
+    "gatsby-plugin-global-styles": "^1.0.17",
+    "gatsby-plugin-layout": "^1.1.13",
+    "gatsby-plugin-styled-components": "^3.1.9",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.10.2",
+    "styled-components": "^4.4.0"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
