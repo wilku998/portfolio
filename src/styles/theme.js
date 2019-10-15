@@ -4,6 +4,7 @@ export default {
     colorGrey3: '#DFDFDF',
     colorGrey4: "#707070",
     colorGrey5: '#313131', //big fonts
-    colorGrey6: '#2E2E2E', //regular text
-    navigationWidth: '5rem'
+    colorGrey6: '#1A1A1A', //regular text
+    navigationWidth: '5rem',
+    backgroundBlockWidth: '30rem'
 }

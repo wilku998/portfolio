@@ -20,7 +20,7 @@ export default createGlobalStyle`
 
     body {
         font-family: 'Playfair Display', serif;
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         line-height: 1.4;
 
         ${({ theme }) => `
