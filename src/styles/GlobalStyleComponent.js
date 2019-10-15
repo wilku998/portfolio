@@ -26,7 +26,7 @@ export default createGlobalStyle`
         ${({ theme }) => `
             padding-right: ${theme.navigationWidth};
             background-color: ${theme.colorGrey1};
-            color: ${theme.colorGrey5};
+            color: ${theme.colorGrey6};
         `}
     }
 

@@ -1,5 +1,5 @@
 import React from "react"
-import style, { Content, TitleContainer, Title, SubTitle } from "./headerStyles"
+import style, { Content, TitleContainer, Title, SubTitle, HeaderStripes } from "./headerStyles"
 
 const Header = ({ className }) => (
   <header className={className}>
@@ -11,6 +11,7 @@ const Header = ({ className }) => (
         </Title>
       </TitleContainer>
     </Content>
+    <HeaderStripes />
   </header>
 )
 

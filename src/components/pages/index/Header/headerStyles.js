@@ -1,7 +1,10 @@
 import styled from "styled-components"
 import { centerAbsolute } from "../../../../styles/mixins"
+import { ThreeStripes } from "../../../abstracts/Stripes"
+
 export default Header => styled(Header)`
   height: 100vh;
+  position: relative;
 `
 
 export const Content = styled.div`
@@ -47,4 +50,11 @@ export const Title = styled.h1`
 
 export const SubTitle = styled.div`
   font-size: 1.6rem;
+`
+
+export const HeaderStripes = styled(ThreeStripes)`
+    position: absolute;
+    bottom: 0;
+    right: 15rem;
+    transform: translate(50%, 50%);
 `
