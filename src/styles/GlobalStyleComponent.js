@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "@nfront/global-styles"
+import { createGlobalStyle } from "styled-components"
 
-const GlobalStyleComponent = createGlobalStyle`
+export default createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
 
     * {
@@ -20,9 +20,11 @@ const GlobalStyleComponent = createGlobalStyle`
 
     body {
         font-family: 'Playfair Display', serif;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         line-height: 1.4;
+
         ${({ theme }) => `
+            padding-right: ${theme.navigationWidth};
             background-color: ${theme.colorGrey1};
             color: ${theme.colorGrey5};
         `}
@@ -52,6 +54,10 @@ const GlobalStyleComponent = createGlobalStyle`
         text-decoration: none;
         display: inline-block;
     };
-`
 
-export default GlobalStyleComponent
+    .navLinkActive{
+        &:after{
+          transform: translateY(-50%) translateX(0);
+        } 
+    }
+`;
