@@ -5,7 +5,7 @@ import Title from '../../../abstracts/Title';
 
 export default Skills => styled(Skills)`
   width: fit-content;
-  margin: 10rem auto 20rem auto;
+  margin: 10rem auto 0 auto;
 `
 
 export const Content = styled.div`

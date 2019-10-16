@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 
 export default Navigation => styled(Navigation)`
   position: fixed;
+  z-index: 20;
   top: 0;
   right: 0;
   width: 100vh;

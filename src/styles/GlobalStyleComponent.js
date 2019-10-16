@@ -25,11 +25,21 @@ export default createGlobalStyle`
         font-family: 'Merriweather', serif;
         font-size: 1.6rem;
         line-height: 1.4;
-
+        position: relative;
         ${({ theme }) => `
             padding-right: ${theme.navigationWidth};
-            background-color: ${theme.colorGrey1};
+            padding-bottom: ${theme.footerHeight};
             color: ${theme.colorGrey6};
+
+            &:after{
+            content: "";
+            position: absolute;
+            top:0;
+            right: 0;
+            height: calc(100% - ${theme.footerHeight});
+            width: ${theme.navigationWidth};
+            background-color: ${theme.colorGrey1};
+        }
         `}
     }
 
@@ -63,4 +73,4 @@ export default createGlobalStyle`
           transform: translateY(-50%) translateX(0);
         } 
     }
-`;
+`

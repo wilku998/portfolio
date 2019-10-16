@@ -20,7 +20,7 @@ const Skills = ({ className }) => (
     <SkillsTitle>Umiejętności</SkillsTitle>
     <Content>
       <FirstImageContainer>
-        <img src="/images/bulb.jpg" />
+        <img alt="żarówka" src="/images/bulb.jpg" />
         <ImageCredit>
           Fotografia wykonana przez ActionVance na Unsplash
         </ImageCredit>
@@ -44,7 +44,7 @@ const Skills = ({ className }) => (
         <SkillsStripe />
       </StripeContainer>
       <SecondImageContainer>
-        <img src="/images/architecture.jpg" />
+        <img alt="architektura" src="/images/architecture.jpg" />
         <ImageCredit>Fotografia wykonana przez Victor na Unsplash</ImageCredit>
       </SecondImageContainer>
       <SubTitleContainer2>
