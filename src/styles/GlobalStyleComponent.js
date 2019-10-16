@@ -1,7 +1,8 @@
 import { createGlobalStyle } from "styled-components"
 
 export default createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
+    /* @import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap'); */
+    @import url('https://fonts.googleapis.com/css?family=Merriweather:300,400,700&display=swap');
 
     * {
         box-sizing: border-box;
@@ -19,7 +20,9 @@ export default createGlobalStyle`
     }
 
     body {
-        font-family: 'Playfair Display', serif;
+        /* font-family: 'Playfair Display', serif;
+         */
+        font-family: 'Merriweather', serif;
         font-size: 1.6rem;
         line-height: 1.4;
 

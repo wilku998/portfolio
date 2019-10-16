@@ -1,11 +1,11 @@
 import React from "react"
 import style, {
-  Title,
   Paragraph,
   Block,
   AboutMeThreeStripes,
   AboutMeStripe,
 } from "./aboutMeStyles"
+import Title from '../../../abstracts/Title';
 
 const AboutMe = ({ className }) => (
   <section className={className}>

@@ -2,6 +2,7 @@ import React from "react"
 import styled from 'styled-components';
 import Header from "../components/pages/index/Header/Header"
 import AboutMe from "../components/pages/index/AboutMe/AboutMe"
+import Skills from "../components/pages/index/Skills/Skills";
 
 const Main = styled.main`
   ${({theme}) => `
@@ -14,6 +15,7 @@ export default () => (
     <Header />
     <Main>
       <AboutMe />
+      <Skills />
     </Main>
   </>
 )

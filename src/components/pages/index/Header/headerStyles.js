@@ -5,14 +5,16 @@ import { ThreeStripes } from "../../../abstracts/Stripes"
 export default Header => styled(Header)`
   height: 100vh;
   position: relative;
-  margin-bottom: 15rem;
+  margin-bottom: 20rem;
 `
 
 export const Content = styled.div`
   height: 100%;
-  width: calc(100% - 30rem);
   background: url(/images/my-photo.jpg) center/cover no-repeat;
   position: relative;
+  ${({ theme }) => `
+    width: calc(100% - ${theme.backgroundBlockWidth} - ${theme.navigationWidth});
+  `}
 `
 
 export const TitleContainer = styled.div`
