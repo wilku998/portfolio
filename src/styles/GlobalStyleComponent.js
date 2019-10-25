@@ -23,7 +23,7 @@ export default createGlobalStyle`
 
     body {
         font-family: 'Merriweather', serif;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         line-height: 1.4;
         position: relative;
 

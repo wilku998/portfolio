@@ -15,5 +15,5 @@ export const Paragraph = styled.p`
 `
 
 export const AboutMeTitle = styled(Title)`
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 `

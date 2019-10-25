@@ -36,6 +36,7 @@ export const Item = styled.div`
 `
 export const ItemTitle = styled.div`
   font-size: 1.2rem;
+  font-weight: 600;
   margin-bottom: 0.3rem;
 `
 

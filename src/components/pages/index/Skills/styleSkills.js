@@ -13,7 +13,7 @@ export const SkillsTitle = styled(Title)`
   text-align: right;
   &:after {
     left: initial;
-    right: 1rem;
+    right: .5rem;
   }
 `
 
@@ -87,8 +87,8 @@ export const BackendTitle = styled(ItemTitle)`
 
 export const SkillsList = styled.ul`
   display: flex;
-  padding: 10rem 10rem 8rem 10rem;
-  font-size: 2rem;
+  padding: 8rem 10rem 6rem 10rem;
+  font-size: 1.8rem;
   flex-wrap: wrap;
   justify-content: center;
   & > li {

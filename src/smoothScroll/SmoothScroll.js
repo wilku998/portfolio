@@ -10,7 +10,7 @@ export class SmoothScroll {
       translationY: {
         previous: 0,
         current: 0,
-        ease: 0.15,
+        ease: 0.2,
         setValue: () =>
           window.pageYOffset || document.documentElement.scrollTop,
       },
@@ -65,10 +65,15 @@ export class SmoothScroll {
       }
     }
 
-    this.callbacks.forEach(cb =>
-      cb(this.renderedStyles.translationY.setValue())
-    )
-
     requestAnimationFrame(() => this.render())
+  }
+
+  blockScroll(){
+    this.DOM.scrollable.style.overflow = "hidden"
+    document.body.style.overflow = "hidden"
+  }
+  unblockScroll(){
+    document.body.style.overflow = "visible"
+    this.DOM.scrollable.style.overflow = "visible"
   }
 }

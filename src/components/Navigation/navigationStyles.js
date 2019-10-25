@@ -12,7 +12,7 @@ export default Navigation => styled(Navigation)`
   transform-origin: 100% 0;
   transform: rotate(90deg) translateX(100%);
   line-height: 1;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   ${({ theme }) => `
     height: ${theme.navigationWidth};
   `}
