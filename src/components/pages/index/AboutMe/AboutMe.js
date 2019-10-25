@@ -1,15 +1,12 @@
 import React from "react"
 import style, {
   Paragraph,
-  Block,
-  AboutMeThreeStripes,
-  AboutMeStripe,
+  AboutMeTitle
 } from "./aboutMeStyles"
-import Title from '../../../abstracts/Title';
 
 const AboutMe = ({ className }) => (
   <section className={className}>
-    <Title>Poznaj&nbsp;mnie</Title>
+    <AboutMeTitle>Poznaj mnie</AboutMeTitle>
     <Paragraph>
       Mam 21 lat, od półtora roku tworzę strony oraz aplikacje internetowe.
       Podstawowe języki frontendu HTML, CSS (w tym flexbox oraz css-grid) oraz
@@ -21,10 +18,6 @@ const AboutMe = ({ className }) => (
       zapoznania się z moimi projektami, które znajdują się w sekcji projekty, a
       zainteresowanych współpracą do wypełnienia formularza kontaktowego.
     </Paragraph>
-    <Block>
-      <AboutMeStripe />
-    </Block>
-    <AboutMeThreeStripes />
   </section>
 )
 

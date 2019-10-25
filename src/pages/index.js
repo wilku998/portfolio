@@ -1,21 +1,22 @@
 import React from "react"
-import styled from 'styled-components';
 import Header from "../components/pages/index/Header/Header"
 import AboutMe from "../components/pages/index/AboutMe/AboutMe"
-import Skills from "../components/pages/index/Skills/Skills";
-
-const Main = styled.main`
-  ${({theme}) => `
-    padding: 0 calc(10rem - ${theme.navigationWidth}) 0 10rem;
-  `}
-`;
+import Skills from "../components/pages/index/Skills/Skills"
+import SeeProjects from "../components/pages/index/SeeProjects/SeeProjects"
+import { SmoothScrollContext } from "../layouts"
 
 export default () => (
-  <>
-    <Header />
-    <Main>
-      <AboutMe />
-      <Skills />
-    </Main>
-  </>
+  <main>
+    <SmoothScrollContext.Consumer>
+      {smoothScroll => (
+        <>
+          <Header smoothScroll={smoothScroll} />
+          <AboutMe />
+          <Skills smoothScroll={smoothScroll} />
+        </>
+      )}
+    </SmoothScrollContext.Consumer>
+
+    <SeeProjects />
+  </main>
 )

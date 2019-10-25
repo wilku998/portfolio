@@ -1,9 +1,9 @@
 import { createGlobalStyle } from "styled-components"
 
 export default createGlobalStyle`
-    /* @import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap'); */
+    @import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
     @import url('https://fonts.googleapis.com/css?family=Merriweather:300,400,700&display=swap');
-
+    
     * {
         box-sizing: border-box;
         margin: 0;
@@ -14,32 +14,22 @@ export default createGlobalStyle`
     }
     h1, h2, h3, h4, h5 {
         margin: 0;
+        font-weight: inherit;
     }
     html {
         font-size: 62.5%;
+        scroll-behavior: smooth;
     }
 
     body {
-        /* font-family: 'Playfair Display', serif;
-         */
         font-family: 'Merriweather', serif;
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         line-height: 1.4;
         position: relative;
-        ${({ theme }) => `
-            padding-right: ${theme.navigationWidth};
-            padding-bottom: ${theme.footerHeight};
-            color: ${theme.colorGrey6};
 
-            &:after{
-            content: "";
-            position: absolute;
-            top:0;
-            right: 0;
-            height: calc(100% - ${theme.footerHeight});
-            width: ${theme.navigationWidth};
-            background-color: ${theme.colorGrey1};
-        }
+        ${({ theme }) => `
+            color: ${theme.colorGrey6};
+            padding-bottom: ${theme.footerHeight};
         `}
     }
 
@@ -72,5 +62,8 @@ export default createGlobalStyle`
         &:after{
           transform: translateY(-50%) translateX(0);
         } 
+    }
+    .xxx{
+        background: red;
     }
 `

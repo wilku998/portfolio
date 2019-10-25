@@ -3,18 +3,19 @@ import { Link } from "gatsby"
 
 export default Footer => styled(Footer)`
   position: fixed;
-  left: 0;
   bottom: 0;
+  left: 0%;
   width: 100%;
-  ${({ theme }) => `
-    background-color: ${theme.colorGrey3};
-    height: ${theme.footerHeight};
-  `}
+  font-size: 1.4rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr) 2fr;
   grid-gap: 2rem 6rem;
   grid-template-rows: repeat(2, max-content) 1fr max-content;
   padding: 10rem 10rem 3rem 10rem;
+  ${({ theme }) => `
+    background-color: ${theme.colorGrey2};
+    min-height: ${theme.footerHeight};
+  `}
 `
 
 export const PrivacyPolicy = styled.span`
@@ -35,7 +36,7 @@ export const Item = styled.div`
 `
 export const ItemTitle = styled.div`
   font-size: 1.2rem;
-  margin-bottom: .3rem;
+  margin-bottom: 0.3rem;
 `
 
 export const Email = styled(Item)`

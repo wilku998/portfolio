@@ -1,64 +1,64 @@
 import styled from "styled-components"
 import { centerAbsolute } from "../../../../styles/mixins"
-import { ThreeStripes } from "../../../abstracts/Stripes"
 
 export default Header => styled(Header)`
   height: 100vh;
   position: relative;
-  margin-bottom: 20rem;
-`
-
-export const Content = styled.div`
-  height: 100%;
-  background: url(/images/my-photo.jpg) center/cover no-repeat;
+  font-family: "Playfair Display", serif;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
   ${({ theme }) => `
-    width: calc(100% - ${theme.backgroundBlockWidth} - ${theme.navigationWidth});
+    background: ${theme.colorGrey2};
   `}
 `
 
-export const TitleContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 10rem;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.2);
-  ${({ theme }) => `
-    width: ${theme.backgroundBlockWidth};
-  `}
-  &:after {
-    z-index: 10;
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 15rem;
-    ${({ theme }) => `
-      background-color: ${theme.colorGrey3};
-    `}
-  }
-`
-
-export const Title = styled.h1`
-  width: 100%;
-  padding: 0 1rem;
-  font-weight: 400;
-  font-size: 3rem;
-  text-transform: uppercase;
-  ${centerAbsolute}
+export const TitleContainer = styled.h1`
+  will-change: transform, opacity;
+  transition: all .4s;
+  z-index: 5;
+  text-align: center;
+  line-height: 1;
+  mix-blend-mode: difference;
   ${({ theme }) => `
     color: ${theme.colorGrey1};
   `}
 `
 
+export const Title = styled.span`
+  letter-spacing: 2rem;
+  font-size: 14rem;
+  &:not(:last-of-type) {
+    margin-right: 2rem;
+  }
+`
 export const SubTitle = styled.div`
-  font-size: 1.6rem;
+  font-size: 2.2rem;
 `
 
-export const HeaderStripes = styled(ThreeStripes)`
+export const Portfolio = styled.span`
+  z-index: 5;
+  text-transform: lowercase;
   position: absolute;
-  bottom: 0;
-  right: 15rem;
-  transform: translate(50%, 50%);
+  bottom: -2.5rem;
+  left: 0;
+  font-size: 1.4rem;
+`
+
+
+export const HeaderImage = styled.div`
+  ${centerAbsolute}
+  width: 55rem;
+  height: 55rem;
+`
+
+export const Image = styled.img`
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  height: calc(100% + 40px);
+  width: calc(100% + 40px);
+  transition: all .4s;
 `
