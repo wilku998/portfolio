@@ -29,11 +29,11 @@ export const NavLink = styled(Link)`
     top: 50%;
     left: 0;
     transform: translateY(-50%) translateX(-100%);
-    height: 1px;
+    height: .5px;
     width: 100%;
-    transition: all 0.2s;
+    transition: all 0.2s ease-in;
     ${({ theme }) => `
-       background-color: ${theme.colorGrey5};
+       background-color: ${theme.colorGrey6};
     `}
   }
   

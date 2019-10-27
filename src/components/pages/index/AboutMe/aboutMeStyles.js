@@ -4,7 +4,9 @@ import Title from "../../../abstracts/Title"
 export default AboutMe => styled(AboutMe)`
   margin-top: 20rem;
   position: relative;
-  padding: 0 10rem;
+  ${({theme}) => `
+    padding: 0 ${theme.verticalPadding};
+  `}
 
 `
 

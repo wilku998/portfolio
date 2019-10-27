@@ -29,15 +29,6 @@ export default class Item {
           )
         },
       },
-      scale: {
-        previous: 1,
-        current: 1,
-        ease: 0.5,
-        maxValue: 1.5,
-        setValue: () => {
-          return 1
-        },
-      },
     }
     this.update()
     this.observer = new IntersectionObserver(entries => {
@@ -82,6 +73,10 @@ export default class Item {
   }
   layout() {
     const previous = this.renderedStyles.innerTranslationY.previous
-    this.DOM.image.style.transform = `translate3d(0,${previous}px,0)`
+    if(this.DOM.image){
+      this.DOM.image.style.transform = `translate3d(0,${previous}px,0)`
+    }else{
+      this.DOM.el.style.transform = `translate3d(0,${previous}px,0)`
+    }
   }
 }

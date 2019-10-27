@@ -5,10 +5,10 @@ const Header = ({ className, smoothScroll }) => {
 
   useLayoutEffect(() => {
     if(smoothScroll){
-      smoothScroll.blockScroll();
-      setTimeout(() => {
-        smoothScroll.unblockScroll();
-      }, 4000)
+      // smoothScroll.blockScroll();
+      // setTimeout(() => {
+      //   smoothScroll.unblockScroll();
+      // }, 4000)
     }
   }, [smoothScroll]);
 

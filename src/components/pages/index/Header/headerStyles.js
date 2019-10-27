@@ -45,10 +45,10 @@ export const Portfolio = styled.div`
   padding: .5rem 2rem .5rem 1rem;
   clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
   background-color: rgba(255, 255, 255, 0.5);
-  animation: ${showPortfolio} 1s 4s both;
+  animation: ${showPortfolio} 1s 3.5s both;
 `
 
-const showTitle = keyframes`
+const showTitleContainer = keyframes`
   0% {
     opacity: 0;
     transform: translate(0, -5rem);
@@ -67,10 +67,10 @@ export const TitleContainer = styled.h1`
   width: 100%;
   line-height: 1;
   /* animation: name duration timing-function delay iteration-count direction fill-mode; */
-  animation: ${showTitle} 1s ease-out 1.5s both;
+  animation: ${showTitleContainer} 1s ease-out 1.5s both;
 `
 
-const showSubtitle = keyframes`
+const showTitle = keyframes`
   from {
     right: 50%;
     transform: translateX(50%);
@@ -86,12 +86,12 @@ export const Subtitle = styled.span`
   font-size: 1.2rem;
   position: absolute;
   top: 100%;
-  animation: ${showSubtitle} 1s ease 3s both;
+  animation: ${showTitle} 1s ease 3s both;
 `
 
 export const Title = styled.span`
   width: fit-content;
   position: absolute;
   font-size: 3.5rem;
-  animation: ${showSubtitle} .8s ease 3s both;
+  animation: ${showTitle} .7s ease 3s both;
 `;

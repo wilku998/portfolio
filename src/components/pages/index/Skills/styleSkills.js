@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import Title from "../../../abstracts/Title"
-import { fullSizeAbsolute } from "../../../../styles/mixins"
+
 export default Skills => styled(Skills)`
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@ export const SkillsTitle = styled(Title)`
   text-align: right;
   &:after {
     left: initial;
-    right: .5rem;
+    right: 0.5rem;
   }
 `
 
@@ -87,10 +87,12 @@ export const BackendTitle = styled(ItemTitle)`
 
 export const SkillsList = styled.ul`
   display: flex;
-  padding: 8rem 10rem 6rem 10rem;
   font-size: 1.8rem;
   flex-wrap: wrap;
   justify-content: center;
+  ${({ theme }) => `
+    padding: 8rem ${theme.verticalPadding} 6rem ${theme.verticalPadding};
+  `}
   & > li {
     margin-bottom: 2rem;
     &:not(:last-child) {

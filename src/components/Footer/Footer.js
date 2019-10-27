@@ -26,8 +26,8 @@ const Footer = ({ className }) => (
       <span>+48 570 706 596</span>
     </Telephone>
     <PhotosCredit>
-      Wszystkie fotografie, poza zdjęciem w nagłówku oraz zdjęć projektów
-      zostały pobrane z serwisu unsplah
+      Wszystkie fotografie, poza zdjęciami projektów
+      zostały pobrane ze strony unsplah
     </PhotosCredit>
     <PrivacyPolicy>2019 wszystkie prawa zastrzeżone</PrivacyPolicy>
     <Contact>

@@ -10,7 +10,7 @@ export class SmoothScroll {
       translationY: {
         previous: 0,
         current: 0,
-        ease: 0.2,
+        ease: 0.15,
         setValue: () =>
           window.pageYOffset || document.documentElement.scrollTop,
       },

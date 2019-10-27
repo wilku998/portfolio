@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef, useLayoutEffect } from "react"
 import style, {
   SkillsTitle,
   Item,
@@ -13,6 +13,16 @@ import style, {
 import Image from "../../../abstracts/Image"
 
 const Skills = ({ className, smoothScroll }) => {
+  const frontend = useRef()
+  const backend = useRef()
+
+  useLayoutEffect(() => {
+    if (smoothScroll) {
+      smoothScroll.addItem(frontend.current)
+      smoothScroll.addItem(backend.current)
+    }
+  }, [smoothScroll])
+
   return (
     <div className={className}>
       <SkillsTitle>Umiejętności</SkillsTitle>
@@ -23,7 +33,7 @@ const Skills = ({ className, smoothScroll }) => {
             src="/images/front-compressed.jpg"
           />
         </FrontendImage>
-        <FrontedContent>
+        <FrontedContent ref={frontend}>
           <FrontendTitle>
             <span>Frontend</span>
           </FrontendTitle>
@@ -52,7 +62,7 @@ const Skills = ({ className, smoothScroll }) => {
         <li>Rest API</li>
       </SkillsList>
       <Item>
-        <BackendContent>
+        <BackendContent ref={backend}>
           <BackendTitle>
             <span>Backend</span>
           </BackendTitle>

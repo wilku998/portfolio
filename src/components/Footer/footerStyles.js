@@ -11,10 +11,10 @@ export default Footer => styled(Footer)`
   grid-template-columns: repeat(2, 1fr) 2fr;
   grid-gap: 2rem 6rem;
   grid-template-rows: repeat(2, max-content) 1fr max-content;
-  padding: 10rem 10rem 3rem 10rem;
   ${({ theme }) => `
     background-color: ${theme.colorGrey2};
     min-height: ${theme.footerHeight};
+    padding: 10rem ${theme.verticalPadding} 3rem ${theme.verticalPadding};
   `}
 `
 
