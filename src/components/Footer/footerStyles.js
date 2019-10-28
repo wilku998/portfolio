@@ -12,7 +12,7 @@ export default Footer => styled(Footer)`
   grid-gap: 2rem 6rem;
   grid-template-rows: repeat(2, max-content) 1fr max-content;
   ${({ theme }) => `
-    background-color: ${theme.colorGrey2};
+    background-color: ${theme.colorGrey3};
     min-height: ${theme.footerHeight};
     padding: 10rem ${theme.verticalPadding} 3rem ${theme.verticalPadding};
   `}
@@ -64,9 +64,9 @@ export const Contact = styled.div`
 `
 
 export const ContactTitle = styled.h2`
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 400;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   ${({ theme }) => `
       color: ${theme.colorGrey5};
     `}

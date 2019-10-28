@@ -22,18 +22,18 @@ export default styled(SeeProjects)`
   justify-content: center;
   align-items: center;
   position: relative;
-  ${({theme}) => `
-    background-color: ${theme.colorGrey1};
-  `}
+/* 
   &:after {
     content: "";
     ${fullSizeAbsolute}
-    background: white;
     opacity: 0;
-    transition: all .4s;
+    transition: all 1s;
+    ${({theme}) => `
+    background-color: ${theme.colorGrey1};
+  `}
   }
 
   &:hover:after {
     opacity: 1;
-  }
+  } */
 `

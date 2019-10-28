@@ -5,16 +5,15 @@ export default Navigation => styled(Navigation)`
   position: fixed;
   z-index: 20;
   top: 0;
-  right: 0;
-  width: 100vh;
+  left: 0;
+  width: 100%;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  transform-origin: 100% 0;
-  transform: rotate(90deg) translateX(100%);
   line-height: 1;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   ${({ theme }) => `
-    height: ${theme.navigationWidth};
+    padding: 2rem ${theme.verticalPadding};
   `}
 `
 

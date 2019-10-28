@@ -7,10 +7,10 @@ export default Skills => styled(Skills)`
   margin-top: 20rem;
 `
 
-export const SkillsTitle = styled(Title)`
-  margin: 0 10rem 2rem 0;
+export const SkillsTitle = styled.h2`
+  text-align: center;
+  font-size: 5rem;
   margin-bottom: 5rem;
-  text-align: right;
   &:after {
     left: initial;
     right: 0.5rem;
@@ -18,7 +18,7 @@ export const SkillsTitle = styled(Title)`
 `
 
 export const Item = styled.section`
-  height: 80vh;
+  height: 55rem;
   display: flex;
 `
 
@@ -53,26 +53,17 @@ export const BackendContent = styled(ItemContent)`
   text-align: end;
 `
 
-export const ItemTitle = styled.h3`
-  font-size: 1.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  position: relative;
-  margin-bottom: 3rem;
-
-  & > span {
-    position: relative;
-    z-index: 10;
-  }
+export const ItemTitle = styled(Title)`
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  ${({theme}) => `
+    color: ${theme.colorGrey5};
+  `}
 
   &:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: calc(100% + 2rem);
-    height: 120%;
-    transform: translate(-50%, -50%);
+    left: 0;
     background-color: white;
   }
 `

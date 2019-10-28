@@ -2,6 +2,7 @@ import styled from "styled-components"
 import GhostButton from "../../abstracts/GhostButton"
 import ReactSVG from "react-svg"
 import { fullSizeAbsolute, centerAbsolute } from "../../../styles/mixins"
+import Title from "../../abstracts/Title";
 
 export default Project => styled(Project)`
   position: absolute;
@@ -9,7 +10,7 @@ export default Project => styled(Project)`
   left: 0;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s;
+  transition: all 0.5s ease-in-out;
   ${({ theme }) => `
     padding: 0 ${theme.verticalPadding} 20rem ${theme.verticalPadding};
   `}
@@ -22,32 +23,8 @@ export const TitleContainer = styled.div`
   `}
 `
 
-export const Title = styled.h2`
-  text-transform: uppercase;
-  font-size: 2rem;
-  font-weight: 600;
-  position: relative;
-
-  ${({ theme }) => `
-    color: ${theme.colorGrey5};
-  `}
-
-  & > span {
-    position: relative;
-    z-index: 10;
-  }
-
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 2rem;
-    height: 100%;
-    width: 100%;
-    ${({ theme }) => `
-      background-color: ${theme.colorGrey2};
-    `}
-  }
+export const ProjectTitle = styled(Title)`
+  font-size: 4rem;
 `
 
 export const Description = styled.div`
@@ -62,8 +39,11 @@ export const Description = styled.div`
 `
 
 export const DescriptionTitle = styled.h3`
-  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.6rem;
   margin-bottom: 1rem;
+  letter-spacing: .2rem;
 `
 
 export const Technologies = styled.div`
@@ -74,7 +54,7 @@ export const Technologies = styled.div`
 export const List = styled.ul`
   & > li {
     &:not(:last-child) {
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.3rem;
     }
   }
 `
@@ -88,6 +68,7 @@ export const DescriptionContent = styled.div`
   flex-direction: column;
 `
 export const Button = styled(GhostButton)`
+  font-size: 1.4rem;
   &:not(:last-child) {
     margin-right: 2rem;
   }
@@ -142,7 +123,7 @@ export const Image = styled.img`
   }
 
   ${({ theme }) => `
-    border: 5px solid ${theme.colorGrey1};
+    border: 3px solid ${theme.colorGrey1};
   `}
 `
 

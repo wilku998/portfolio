@@ -1,21 +1,19 @@
 import React, { useState, useRef, useLayoutEffect, useEffect } from "react"
 import Project from "../components/pages/projekty/Project"
 import styled from "styled-components"
-import projectsData from "../projectsData"
 import {
   TitleContainer,
   MoveIconLeft,
   MoveIconRight,
-  Title,
+  ProjectTitle,
   MoveIconContainer,
 } from "../components/pages/projekty/styleProjects"
 import { SmoothScrollContext } from "../layouts"
+import { useStaticQuery, graphql } from "gatsby"
 
 const Main = styled.main`
   overflow: hidden;
-  ${({ theme }) => `
-    margin-top: 10rem
-  `}
+  padding-top: 10rem;
 `
 
 const ProjectsContainer = styled.div`
@@ -23,14 +21,47 @@ const ProjectsContainer = styled.div`
 `
 
 const Projects = ({ smoothScroll }) => {
+  const data = useStaticQuery(graphql`
+  query {
+    allContentfulProject {
+      edges {
+        node {
+          descriptionPl {
+            descriptionPl
+          }
+          descriptionEng {
+            descriptionEng
+          }
+          title
+          images {
+            id
+          }
+          technologies
+          images {
+            fluid {
+              src
+            }
+          }
+        }
+      }
+    }
+  }
+`)
+  const projectsData = data.allContentfulProject.edges.map(e => ({
+    ...e.node,
+    description: e.node.descriptionPl.descriptionPl,
+    descriptionEng: e.node.descriptionEng.descriptionEng,
+    images: e.node.images.map(e => e.fluid.src),
+  }))
   const [position, setPosition] = useState(0)
-  const [shouldRender, setShouldRender] = useState(false)
+  const [shouldRender, setShouldRender] = useState(true)
   const selectedProject = useRef()
   const main = useRef()
   const title = useRef()
   const isNext = projectsData.length > 1 && position < projectsData.length - 1
   const isPrev = projectsData.length > 1 && position > 0
 
+  console.log(projectsData)
   const increasePosition = () => {
     setPosition(position + 1)
   }
@@ -41,33 +72,33 @@ const Projects = ({ smoothScroll }) => {
 
   const setSize = () => {
     main.current.style.height =
-    selectedProject.current.scrollHeight + title.current.scrollHeight + "px"
+      selectedProject.current.scrollHeight + title.current.scrollHeight + "px"
     smoothScroll.setSize()
   }
 
   useLayoutEffect(() => {
     if (shouldRender && smoothScroll) {
-      setSize();
+      setSize()
     }
     window.addEventListener("resize", setSize)
     return () => window.removeEventListener("resize", setSize)
   }, [selectedProject.current, shouldRender, smoothScroll])
 
-  useEffect(() => {
-    const images = []
-    projectsData.forEach(project => project.images.forEach(e => images.push(e)))
-    let loadedImages = 0
-    images.forEach(imgUrl => {
-      let img = new Image()
-      img.src = imgUrl
-      img.onload = () => {
-        loadedImages++
-        if (loadedImages === images.length) {
-          setShouldRender(true)
-        }
-      }
-    })
-  }, [])
+  // useEffect(() => {
+  //   const images = []
+  //   projectsData.forEach(project => project.images.forEach(e => images.push(e)))
+  //   let loadedImages = 0
+  //   images.forEach(imgUrl => {
+  //     let img = new Image()
+  //     img.src = imgUrl
+  //     img.onload = () => {
+  //       loadedImages++
+  //       if (loadedImages === images.length) {
+  //         setShouldRender(true)
+  //       }
+  //     }
+  //   })
+  // }, [])
 
   return (
     <Main ref={main}>
@@ -83,9 +114,9 @@ const Projects = ({ smoothScroll }) => {
                 />
               )}
             </MoveIconContainer>
-            <Title>
+            <ProjectTitle>
               <span>{projectsData[position].title}</span>
-            </Title>
+            </ProjectTitle>
             <MoveIconContainer>
               {isNext && (
                 <MoveIconRight

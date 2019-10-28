@@ -1,26 +1,41 @@
 import React, { useLayoutEffect } from "react"
-import style, { Portfolio, HeaderImage, Subtitle, TitleContainer, Title } from "./headerStyles"
+import style, {
+  TopBlock,
+  Content,
+  ShortBio,
+  Title,
+  BioTitle,
+  SubTitle,
+  RotatedTitle,
+} from "./headerStyles"
 
 const Header = ({ className, smoothScroll }) => {
-
   useLayoutEffect(() => {
-    if(smoothScroll){
+    if (smoothScroll) {
       // smoothScroll.blockScroll();
       // setTimeout(() => {
       //   smoothScroll.unblockScroll();
       // }, 4000)
     }
-  }, [smoothScroll]);
+  }, [smoothScroll])
 
   return (
     <header className={className}>
-      <HeaderImage>
-        <Portfolio>2019 Portfolio</Portfolio>
-      </HeaderImage>
-      <TitleContainer>
-        <Title>Bartosz Wilk</Title>
-        <Subtitle>Junior front-end developer</Subtitle>
-      </TitleContainer>
+      <TopBlock />
+      <Content>
+        <Title>
+          Bartosz Wilk
+          <SubTitle>Junior frontend developer</SubTitle>
+        </Title>
+        <div>
+          <BioTitle>O mnie</BioTitle>
+          <ShortBio>
+            Tworzę strony oraz aplikacje internetowe korzystając z najnowszych
+            technologii.
+          </ShortBio>
+        </div>
+      </Content>
+      <RotatedTitle>Portfolio</RotatedTitle>
     </header>
   )
 }

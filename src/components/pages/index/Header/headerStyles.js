@@ -2,96 +2,99 @@ import styled, { keyframes } from "styled-components"
 import { centerAbsolute } from "../../../../styles/mixins"
 
 export default Header => styled(Header)`
+  width: 100%;
   height: 100vh;
-  width: 100%;
   position: relative;
-`
-
-const showHeaderImage = keyframes`
-  from {
-    transform: translateX(-100%)
-  }
-
-  to {
-    transform: translateX(0);
-  }
-`;
-
-export const HeaderImage = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 25%;
-  background: url("/images/header-compressed.jpg") center/cover no-repeat;
-  animation: ${showHeaderImage} 1s 3s both;
-`
-
-const showPortfolio = keyframes`
-  0% {
-    opacity: 0;
-    transform: translate(-10rem, -50%);
-  }
-
-  100%{
-    opacity: 1;
-    transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 40rem;
+    height: 100%;
+    width: calc(100% - 40rem);
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.025);
+    ${({ theme }) => `
+      background: ${theme.colorGrey1}
+    `}
   }
 `
 
-export const Portfolio = styled.div`
-  font-size: 1.4rem;
-  ${centerAbsolute}
-  padding: .5rem 2rem .5rem 1rem;
-  clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
-  background-color: rgba(255, 255, 255, 0.5);
-  animation: ${showPortfolio} 1s 3.5s both;
-`
-
-const showTitleContainer = keyframes`
-  0% {
-    opacity: 0;
-    transform: translate(0, -5rem);
-  }
-
-  100%{
-    opacity: 1;
-    transform: translate(0, -50%);
-  }
-`
-
-export const TitleContainer = styled.h1`
-  position: absolute;
-  height: 3.5rem;
-  top: 50%;
+export const TopBlock = styled.div`
+  flex: 0 0 20%;
+  z-index: 10;
   width: 100%;
-  line-height: 1;
-  /* animation: name duration timing-function delay iteration-count direction fill-mode; */
-  animation: ${showTitleContainer} 1s ease-out 1.5s both;
+  height: 25%;
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: calc(100% + 2rem);
+    left: 0;
+    width: 100%;
+    height: 2px;
+  }
+
+  ${({ theme }) => `
+    border-bottom: 2px ${theme.colorGrey2} solid;
+    &:after{
+      background-color: ${theme.colorGrey2};
+    }
+  `}
+`
+
+export const Content = styled.div`
+  padding: 10rem 5rem 4rem 5rem;
+  width: 40rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
+export const ShortBio = styled.p``
+
+export const BioTitle = styled.h3`
+  font-size: 1.6rem;
+  font-weight: 600;
+  ${({ theme }) => `
+    color: ${theme.colorGrey5};
+  `}
 `
 
 const showTitle = keyframes`
-  from {
-    right: 50%;
-    transform: translateX(50%);
+  0% {
+    opacity: 0;
+    transform: translateY(-5rem);
   }
-  to {
-    right: 10rem;
-    transform: translateX(0);
+
+  100%{
+    opacity: 1;
+    transform: translateY(0);
   }
 `
 
-export const Subtitle = styled.span`
-  width: fit-content;
-  font-size: 1.2rem;
-  position: absolute;
-  top: 100%;
-  animation: ${showTitle} 1s ease 3s both;
+export const Title = styled.h1`
+  font-size: 4rem;
+  line-height: 1;
+  animation: ${showTitle} 1s 1s both;
 `
 
-export const Title = styled.span`
-  width: fit-content;
+export const SubTitle = styled.div`
+  font-size: 1.4rem;
+`
+
+export const RotatedTitle = styled.h2`
   position: absolute;
-  font-size: 3.5rem;
-  animation: ${showTitle} .7s ease 3s both;
-`;
+  z-index: 20;
+  bottom: 4rem;
+  right: 4rem;
+  transform-origin: bottom right;
+  transform: rotate(270deg) translateX(100%);
+  font-size: 10rem;
+  ${({ theme }) => `
+    color: ${theme.colorGrey3}
+  `}
+`

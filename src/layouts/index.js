@@ -10,7 +10,7 @@ const Container = styled.div`
   position: relative;
   z-index: 10;
   ${({ theme }) => `
-    background: ${theme.colorGrey1}
+    background: ${theme.colorGrey2}
   `}
 `
 

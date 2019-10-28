@@ -1,20 +1,27 @@
 import styled from "styled-components"
 
 export default styled.h1`
-  font-size: 3rem;
   font-weight: 400;
   position: relative;
-  text-transform: uppercase;
+
+  ${({ theme }) => `
+    color: ${theme.colorGrey5};
+  `}
+
+  & > span {
+    position: relative;
+    z-index: 10;
+  }
+
   &:after {
     content: "";
     position: absolute;
-    top: 100%;
-    left: .5rem;
-    width: 5rem;
-    height: 2px;
-    border-radius: 10%;
+    top: 0;
+    left: 2rem;
+    height: 100%;
+    width: 100%;
     ${({ theme }) => `
-       background-color: ${theme.colorGrey5};
+      background-color: ${theme.colorGrey1};
     `}
   }
 `

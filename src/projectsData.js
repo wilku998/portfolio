@@ -2,12 +2,12 @@ export default [
   {
     title: "SecondHand",
     images: [
-      "/images/secondhand/1.png",
-      "/images/secondhand/2.png",
-      "/images/secondhand/3.png",
+      "/images/secondhand/1-compressed.jpg",
+      "/images/secondhand/2-compressed.jpg",
+      "/images/secondhand/3-compressed.jpg",
     ],
     description:
-      "Aplikacja została stworzona w celu umożliwienia użytkownikom sprzedaży ubrań. Sprzedawca może dodać przedmiot wraz ze 3 zdjęciami po czym zainteresowana osoba może skontaktować się ze sprzedawca za pomocą wbudowanego komunikatora. Projekt posiada galerie zdjęć sterowaną strzałkami, wbudowanymi przyciskami lub przesunięciem palcem na telefonie, system powiadomień dotyczący obserwowanych użytkowników, własne API które łączy się z bazą MongoDB. Zarówno wiadomości jak i powiadomienia są wysyłane za pomocą websockets.",
+      "Aplikacja została stworzona w celu umożliwienia użytkownikom sprzedaży ubrań. Sprzedawca może dodać przedmiot wraz ze 3 zdjęciami po czym zainteresowana osoba może skontaktować się ze sprzedawca za pomocą wbudowanego komunikatora. Projekt posiada galerie zdjęć sterowaną strzałkami, wbudowanymi przyciskami lub przesunięciem palcem na telefonie, system powiadomień dotyczący obserwowanych użytkowników oraz własne API które łączy się z bazą MongoDB. Zarówno wiadomości jak i powiadomienia są wysyłane za pomocą websockets.",
     technologies: [
       "React: 16.8",
       "MobX: 5.13",
@@ -21,9 +21,9 @@ export default [
   {
     title: "Tetris",
     images: [
-      "/images/tetris/1.png",
-      "/images/tetris/2.png",
-      "/images/tetris/3.png",
+      "/images/tetris/1-compressed.jpg",
+      "/images/tetris/2-compressed.jpg",
+      "/images/tetris/3-compressed.jpg",
     ],
     description:
       "Prosta gra typu Tetris, gracz może sterować obiektem zarówno strzałkami i jak przyciskami wbudowanymi w panel gracza. Gra posiada 3 poziomy trudności zależne od zebranych punktów.",
@@ -37,9 +37,9 @@ export default [
   {
     title: "CarRental",
     images: [
-      "/images/car-rental/1.png",
-      "/images/car-rental/2.png",
-      "/images/car-rental/3.png",
+      "/images/car-rental/1-compressed.jpg",
+      "/images/car-rental/2-compressed.jpg",
+      "/images/car-rental/3-compressed.jpg",
     ],
     description:
       "Landing page fikcyjnej wypożyczali samochodów. Jest to jeden z moich najstarszych projektów, lecz posiada ciekawy design oraz animacje onscroll typowe dla stron tego typu, projekt także wykorzystuje Google Maps API.",
