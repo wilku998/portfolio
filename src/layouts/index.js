@@ -5,13 +5,11 @@ import Navigation from "../components/Navigation/Navigation"
 import GlobalStyleComponent from "../styles/GlobalStyleComponent"
 import Footer from "../components/Footer/Footer"
 import { SmoothScroll } from "../smoothScroll/SmoothScroll"
+import Transition from "../components/Tranistion";
 
 const Container = styled.div`
   position: relative;
   z-index: 10;
-  ${({ theme }) => `
-    background: ${theme.colorGrey2}
-  `}
 `
 
 const Scrollable = styled.div`
@@ -26,7 +24,7 @@ const Scrollable = styled.div`
 
 export const SmoothScrollContext = createContext()
 
-export default ({ children }) => {
+export default ({ children, location }) => {
   const [smoothScroll, setSmoothScroll] = useState()
   const body = useRef()
   const scrollable = useRef()
@@ -42,7 +40,9 @@ export default ({ children }) => {
           <GlobalStyleComponent />
           <Navigation />
           <Scrollable ref={scrollable}>
-            <Container>{children}</Container>
+            <Transition location={location}>
+              <Container>{children}</Container>
+            </Transition>
           </Scrollable>
           <Footer />
         </ThemeProvider>

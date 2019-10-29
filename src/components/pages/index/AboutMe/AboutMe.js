@@ -4,15 +4,20 @@ import style, {
   AboutMeTitle,
   ImageContainer,
   Content,
-  FirstImage,
-  SecondImage,
+  SecondImageContainer,
+  FirstImageContainer,
 } from "./aboutMeStyles"
+import Image from "../../../abstracts/Image"
 
-const AboutMe = ({ className }) => (
+const AboutMe = ({ className, smoothScroll }) => (
   <section className={className}>
     <ImageContainer>
-      <FirstImage src="images/my-photo.jpg" />
-      <SecondImage src="images/my-photo.jpg" />
+      <FirstImageContainer>
+        <Image smoothScroll={smoothScroll} src="/images/my-photo.jpg" />
+      </FirstImageContainer>
+      <SecondImageContainer>
+        <Image smoothScroll={smoothScroll} src="/images/my-photo.jpg" />
+      </SecondImageContainer>
     </ImageContainer>
     <Content>
       <AboutMeTitle>

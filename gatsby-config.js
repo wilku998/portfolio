@@ -1,6 +1,6 @@
-const dotenv = require("dotenv");
+const dotenv = require("dotenv")
 
-if(process.env.NODE_ENV !=="production"){
+if (process.env.NODE_ENV !== "production") {
   dotenv.config()
 }
 
@@ -19,6 +19,6 @@ module.exports = {
         spaceId: `kw73zaobt30l`,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
-    }
+    },
   ],
 }

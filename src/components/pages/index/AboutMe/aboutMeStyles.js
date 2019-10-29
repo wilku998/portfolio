@@ -34,15 +34,15 @@ export const ImageContainer = styled.div`
   justify-content: space-between;
 `
 
-const Image = styled.img`
+const Image = styled.div`
   width: calc(50% - 2.5rem);
   height: calc(100% - 10rem);
   max-width: 30rem;
 `
-export const FirstImage = styled(Image)`
+export const FirstImageContainer = styled(Image)`
   margin-top: 10rem;
 `
 
-export const SecondImage = styled(Image)`
+export const SecondImageContainer = styled(Image)`
   margin-top: 0;
 `

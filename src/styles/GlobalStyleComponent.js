@@ -61,7 +61,10 @@ export default createGlobalStyle`
           transform: translateY(-50%) translateX(0);
         } 
     }
-    .xxx{
-        background: red;
+
+    main{
+       ${({ theme }) => `
+        background: ${theme.colorGrey2}
+      `}
     }
 `

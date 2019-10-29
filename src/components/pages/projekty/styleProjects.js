@@ -12,7 +12,7 @@ export default Project => styled(Project)`
   flex-direction: column;
   transition: all 0.5s ease-in-out;
   ${({ theme }) => `
-    padding: 0 ${theme.verticalPadding} 20rem ${theme.verticalPadding};
+    padding: 0 ${theme.verticalPadding} 30rem ${theme.verticalPadding};
   `}
 `
 

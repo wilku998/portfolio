@@ -1,6 +1,6 @@
 import React, { useState, useRef, useLayoutEffect, useEffect } from "react"
-import Project from "../components/pages/projekty/Project"
 import styled from "styled-components"
+import { useStaticQuery, graphql } from "gatsby"
 import {
   TitleContainer,
   MoveIconLeft,
@@ -9,7 +9,7 @@ import {
   MoveIconContainer,
 } from "../components/pages/projekty/styleProjects"
 import { SmoothScrollContext } from "../layouts"
-import { useStaticQuery, graphql } from "gatsby"
+import Project from "../components/pages/projekty/Project"
 
 const Main = styled.main`
   overflow: hidden;
@@ -22,31 +22,31 @@ const ProjectsContainer = styled.div`
 
 const Projects = ({ smoothScroll }) => {
   const data = useStaticQuery(graphql`
-  query {
-    allContentfulProject {
-      edges {
-        node {
-          descriptionPl {
-            descriptionPl
-          }
-          descriptionEng {
-            descriptionEng
-          }
-          title
-          images {
-            id
-          }
-          technologies
-          images {
-            fluid {
-              src
+    query {
+      allContentfulProject {
+        edges {
+          node {
+            descriptionPl {
+              descriptionPl
+            }
+            descriptionEng {
+              descriptionEng
+            }
+            title
+            images {
+              id
+            }
+            technologies
+            images {
+              fluid {
+                src
+              }
             }
           }
         }
       }
     }
-  }
-`)
+  `)
   const projectsData = data.allContentfulProject.edges.map(e => ({
     ...e.node,
     description: e.node.descriptionPl.descriptionPl,
@@ -54,14 +54,13 @@ const Projects = ({ smoothScroll }) => {
     images: e.node.images.map(e => e.fluid.src),
   }))
   const [position, setPosition] = useState(0)
-  const [shouldRender, setShouldRender] = useState(true)
+  const [shouldRender, setShouldRender] = useState(false)
   const selectedProject = useRef()
   const main = useRef()
   const title = useRef()
   const isNext = projectsData.length > 1 && position < projectsData.length - 1
   const isPrev = projectsData.length > 1 && position > 0
 
-  console.log(projectsData)
   const increasePosition = () => {
     setPosition(position + 1)
   }
@@ -84,21 +83,21 @@ const Projects = ({ smoothScroll }) => {
     return () => window.removeEventListener("resize", setSize)
   }, [selectedProject.current, shouldRender, smoothScroll])
 
-  // useEffect(() => {
-  //   const images = []
-  //   projectsData.forEach(project => project.images.forEach(e => images.push(e)))
-  //   let loadedImages = 0
-  //   images.forEach(imgUrl => {
-  //     let img = new Image()
-  //     img.src = imgUrl
-  //     img.onload = () => {
-  //       loadedImages++
-  //       if (loadedImages === images.length) {
-  //         setShouldRender(true)
-  //       }
-  //     }
-  //   })
-  // }, [])
+  useEffect(() => {
+    const images = []
+    projectsData.forEach(project => project.images.forEach(e => images.push(e)))
+    let loadedImages = 0
+    images.forEach(imgUrl => {
+      let img = new Image()
+      img.src = imgUrl
+      img.onload = () => {
+        loadedImages++
+        if (loadedImages === images.length) {
+          setShouldRender(true)
+        }
+      }
+    })
+  }, [])
 
   return (
     <Main ref={main}>

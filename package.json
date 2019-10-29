@@ -13,19 +13,17 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
   },
   "dependencies": {
-    "@nfront/global-styles": "^1.2.1",
     "babel-plugin-styled-components": "^1.10.6",
     "dotenv": "^8.2.0",
-    "framer-motion": "^1.6.14",
-    "gatsby": "^2.15.34",
+    "gatsby": "^2.17.6",
     "gatsby-plugin-layout": "^1.1.13",
     "gatsby-plugin-styled-components": "^3.1.9",
     "gatsby-source-contentful": "^2.1.50",
-    "imagesloaded": "^4.1.4",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scroll": "^1.7.14",
     "react-svg": "^10.0.23",
+    "react-transition-group": "^4.3.0",
     "styled-components": "^4.4.0"
   },
   "devDependencies": {

@@ -6,17 +6,16 @@ import SeeProjects from "../components/pages/index/SeeProjects/SeeProjects"
 import { SmoothScrollContext } from "../layouts"
 
 export default () => (
-  <main>
-    <SmoothScrollContext.Consumer>
-      {smoothScroll => (
-        <>
-          <Header smoothScroll={smoothScroll} />
-          <AboutMe />
-          <Skills smoothScroll={smoothScroll} />
-        </>
-      )}
-    </SmoothScrollContext.Consumer>
-
-    <SeeProjects />
-  </main>
+    <main>
+      <SmoothScrollContext.Consumer>
+        {smoothScroll => (
+          <>
+            <Header smoothScroll={smoothScroll} />
+            <AboutMe smoothScroll={smoothScroll} />
+            <Skills smoothScroll={smoothScroll} />
+          </>
+        )}
+      </SmoothScrollContext.Consumer>
+      <SeeProjects />
+    </main>
 )
