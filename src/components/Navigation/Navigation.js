@@ -11,12 +11,8 @@ const Navigation = ({ className }) => {
   return (
     <nav className={className}>
       {links.map(e => (
-        <NavLink
-          to={e.link}
-          key={e.link}
-          //  activeClassName="navLinkActive"
-        >
-          {e.title}
+        <NavLink key={e.link} activeClassName="navLinkActive" to={e.link}>
+          <span>{e.title}</span>
         </NavLink>
       ))}
     </nav>

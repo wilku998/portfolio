@@ -16,7 +16,6 @@ export default createGlobalStyle`
     }
     html {
         font-size: 62.5%;
-        scroll-behavior: smooth;
     }
 
     body {
@@ -24,10 +23,11 @@ export default createGlobalStyle`
         font-size: 1.6rem;
         line-height: 1.4;
         position: relative;
-
+        overflow-x: hidden;
         ${({ theme }) => `
-            color: ${theme.colorGrey6};
-            padding-bottom: ${theme.footerHeight};
+          color: ${theme.colorGrey6};
+          padding-bottom: ${theme.footerHeight};
+          background-color: ${theme.colorGrey2};
         `}
     }
 
@@ -58,7 +58,8 @@ export default createGlobalStyle`
 
     .navLinkActive{
         &:after{
-          transform: translateY(-50%) translateX(0);
+            transform: translateX(0);
+            left: 0;
         } 
     }
 

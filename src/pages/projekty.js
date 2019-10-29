@@ -10,6 +10,8 @@ import {
 } from "../components/pages/projekty/styleProjects"
 import { SmoothScrollContext } from "../layouts"
 import Project from "../components/pages/projekty/Project"
+import useLoadImages from "../hooks/useLoadImages"
+import useScrollReset from "../hooks/useScrollReset"
 
 const Main = styled.main`
   overflow: hidden;
@@ -53,8 +55,10 @@ const Projects = ({ smoothScroll }) => {
     descriptionEng: e.node.descriptionEng.descriptionEng,
     images: e.node.images.map(e => e.fluid.src),
   }))
+  const images = []
+  projectsData.forEach(project => project.images.forEach(e => images.push(e)))
+  const imagesLoaded = useLoadImages(images)
   const [position, setPosition] = useState(0)
-  const [shouldRender, setShouldRender] = useState(false)
   const selectedProject = useRef()
   const main = useRef()
   const title = useRef()
@@ -76,32 +80,18 @@ const Projects = ({ smoothScroll }) => {
   }
 
   useLayoutEffect(() => {
-    if (shouldRender && smoothScroll) {
+    if (imagesLoaded) {
       setSize()
     }
     window.addEventListener("resize", setSize)
     return () => window.removeEventListener("resize", setSize)
-  }, [selectedProject.current, shouldRender, smoothScroll])
+  }, [selectedProject.current, imagesLoaded])
 
-  useEffect(() => {
-    const images = []
-    projectsData.forEach(project => project.images.forEach(e => images.push(e)))
-    let loadedImages = 0
-    images.forEach(imgUrl => {
-      let img = new Image()
-      img.src = imgUrl
-      img.onload = () => {
-        loadedImages++
-        if (loadedImages === images.length) {
-          setShouldRender(true)
-        }
-      }
-    })
-  }, [])
+  useScrollReset(smoothScroll);
 
   return (
     <Main ref={main}>
-      {shouldRender && (
+      {imagesLoaded && (
         <>
           <TitleContainer ref={title}>
             <MoveIconContainer>
@@ -145,6 +135,6 @@ const Projects = ({ smoothScroll }) => {
 
 export default () => (
   <SmoothScrollContext.Consumer>
-    {smoothScroll => <Projects smoothScroll={smoothScroll} />}
+    {smoothScroll => smoothScroll && <Projects smoothScroll={smoothScroll} />}
   </SmoothScrollContext.Consumer>
 )

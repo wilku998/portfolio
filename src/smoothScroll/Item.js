@@ -8,8 +8,8 @@ export default class Item {
       innerTranslationY: {
         previous: 0,
         current: 0,
-        ease: 0.5,
-        maxValue: 100,
+        ease: 0.2,
+        maxValue: 50,
         setValue: () => {
           const maxValue = this.renderedStyles.innerTranslationY.maxValue
           const minValue = -1 * maxValue

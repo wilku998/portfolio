@@ -76,6 +76,7 @@ export const ContactLink = styled(Link)`
   padding: 0.6rem 4rem;
   font-size: 1.4rem;
   ${({ theme }) => `
-        border: 1px solid ${theme.colorGrey5};
-    `}
+    border: 1px solid ${theme.colorGrey5};
+    color: ${theme.colorGrey6};
+  `}
 `

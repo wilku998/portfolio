@@ -11,8 +11,8 @@ import style, {
   ItemTitle,
 } from "./footerStyles"
 
-const Footer = ({ className }) => (
-  <footer className={className}>
+const Footer = React.forwardRef(({ className }, ref) => (
+  <footer ref={ref} className={className}>
     <Email>
       <ItemTitle>email</ItemTitle>
       <span>wilkbartosz98@wp.pl</span>
@@ -26,8 +26,8 @@ const Footer = ({ className }) => (
       <span>+48 570 706 596</span>
     </Telephone>
     <PhotosCredit>
-      Wszystkie fotografie, poza zdjęciami projektów
-      zostały pobrane ze strony unsplah
+      Wszystkie fotografie, poza zdjęciami projektów zostały pobrane ze strony
+      unsplah
     </PhotosCredit>
     <PrivacyPolicy>2019 wszystkie prawa zastrzeżone</PrivacyPolicy>
     <Contact>
@@ -35,6 +35,6 @@ const Footer = ({ className }) => (
       <ContactLink to="/kontakt">Formularz kontaktowy</ContactLink>
     </Contact>
   </footer>
-);
+))
 
 export default style(Footer)

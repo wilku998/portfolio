@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react"
+import React from "react"
 import style, {
   TopBlock,
   Content,
@@ -10,15 +10,6 @@ import style, {
 } from "./headerStyles"
 
 const Header = ({ className, smoothScroll }) => {
-  useLayoutEffect(() => {
-    if (smoothScroll) {
-      // smoothScroll.blockScroll();
-      // setTimeout(() => {
-      //   smoothScroll.unblockScroll();
-      // }, 4000)
-    }
-  }, [smoothScroll])
-
   return (
     <header className={className}>
       <TopBlock />
