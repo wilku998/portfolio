@@ -59,6 +59,7 @@ const Projects = ({ smoothScroll }) => {
   projectsData.forEach(project => project.images.forEach(e => images.push(e)))
   const imagesLoaded = useLoadImages(images)
   const [position, setPosition] = useState(0)
+  const [translateX, setTranslateX] = useState(0)
   const selectedProject = useRef()
   const main = useRef()
   const title = useRef()
@@ -66,11 +67,15 @@ const Projects = ({ smoothScroll }) => {
   const isPrev = projectsData.length > 1 && position > 0
 
   const increasePosition = () => {
-    setPosition(position + 1)
+    if (isNext) {
+      setPosition(position + 1)
+    }
   }
 
   const decreasePosition = () => {
-    setPosition(position - 1)
+    if (isPrev) {
+      setPosition(position - 1)
+    }
   }
 
   const setSize = () => {
@@ -79,16 +84,75 @@ const Projects = ({ smoothScroll }) => {
     smoothScroll.setSize()
   }
 
+  useScrollReset(smoothScroll)
+
+  const onTouchListiner = (
+    event,
+    eventProperty,
+    initialX,
+    currentSmallerCallback,
+    currentGreaterCallBack
+  ) => {
+    const currentX = event[eventProperty][0].clientX
+    const diff = initialX - currentX
+    if (Math.abs(diff) > 20) {
+      if (currentX < initialX) {
+        currentSmallerCallback(-50)
+      } else if (currentX > initialX) {
+        currentGreaterCallBack(50)
+      }
+    }
+  }
+
   useLayoutEffect(() => {
     if (imagesLoaded) {
       setSize()
+      const component = main.current
+      let initialX = 0
+
+      const onTouchStart = e => {
+        initialX = e.touches[0].clientX
+      }
+
+      const onTouchEnd = e => {
+        setTranslateX(0)
+        onTouchListiner(
+          e,
+          "changedTouches",
+          initialX,
+          increasePosition,
+          decreasePosition
+        )
+      }
+
+      const onTouchMove = e => {
+        onTouchListiner(e, "touches", initialX, setTranslateX, setTranslateX)
+      }
+
+      const onKeyDown = e => {
+        const { keyCode } = e
+        if (keyCode === 37) {
+          decreasePosition()
+        } else if (keyCode === 39) {
+          increasePosition()
+        }
+      }
+
+      component.addEventListener("touchstart", onTouchStart)
+      component.addEventListener("touchend", onTouchEnd)
+      component.addEventListener("touchmove", onTouchMove)
+      window.addEventListener("keydown", onKeyDown)
+      window.addEventListener("resize", setSize)
+      return () => {
+        component.removeEventListener("touchstart", onTouchStart)
+        component.removeEventListener("touchend", onTouchEnd)
+        component.removeEventListener("touchmove", onTouchMove)
+        window.removeEventListener("keydown", onKeyDown)
+        window.removeEventListener("resize", setSize)
+      }
     }
-    window.addEventListener("resize", setSize)
-    return () => window.removeEventListener("resize", setSize)
-  }, [selectedProject.current, imagesLoaded])
-
-  useScrollReset(smoothScroll);
-
+  }, [position, imagesLoaded])
+  console.log(translateX)
   return (
     <Main ref={main}>
       {imagesLoaded && (
@@ -123,7 +187,8 @@ const Projects = ({ smoothScroll }) => {
                 project={e}
                 ref={selectedProject}
                 isSelected={i === position}
-                transform={`translateX(${i - position}00%)`}
+                transform={`translateX(${i -
+                  position}00%) translateX(${translateX}px)`}
               />
             ))}
           </ProjectsContainer>

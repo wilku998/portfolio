@@ -73,10 +73,8 @@ export default class Item {
   }
   layout() {
     const previous = this.renderedStyles.innerTranslationY.previous
-    if(this.DOM.image){
-      this.DOM.image.style.transform = `translate3d(0,${previous}px,0)`
-    }else{
-      this.DOM.el.style.transform = `translate3d(0,${previous}px,0)`
-    }
+    this.DOM[
+      this.DOM.image ? "image" : "el"
+    ].style.transform = `translate3d(0,${previous}px,0)`
   }
 }
