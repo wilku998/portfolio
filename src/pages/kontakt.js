@@ -1,13 +1,7 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import { isEmail } from "validator"
-import mailgun from "mailgun.js"
-
-const mg = mailgun.client({
-  username: "api",
-  key: process.env.MAILGUN_API_KEY,
-  public_key: process.env.MAILGUN_PUBLIC_KEY,
-})
+import ajax from "../ajax"
 
 const Main = styled.main`
   height: 100vh;
@@ -63,17 +57,24 @@ export default () => {
     })
 
     if (valid) {
-      try {
-        await mg.messages.create(process.env.MAILGUN_DOMAIN, {
-          from: `${name} <${email}>`,
-          to: ["wilkbartosz98@wp.pl"],
-          subject: title,
-          text: message,
-          html: "",
-        })
+      const data = {
+        from: `${name} ${email}`,
+        to: "wilkbartosz98@wp.pl",
+        subject: title,
+        text: message,
+      }
+      const response = await ajax(
+        "POST",
+        "https://wilkmailsender.herokuapp.com/mails",
+        data,
+        201
+      )
+      if (response.error) {
+        setErrorMessage(
+          "Ups. Coś poszło nie tak, zapraszam do wysłania maila ze swojej skrzynki pocztowej."
+        )
+      } else {
         setErrorMessage("Wiadomość wysłana")
-      } catch (e) {
-        setErrorMessage("Ups. Coś poszło nie tak, zapraszam do wysłania maila ze swojej skrzynki pocztowej.")
       }
     }
   }
