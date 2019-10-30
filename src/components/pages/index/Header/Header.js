@@ -6,10 +6,10 @@ import style, {
   Title,
   BioTitle,
   SubTitle,
-  RotatedTitle,
 } from "./headerStyles"
+import RotatedTitle from "../../../abstracts/RotatedTitle"
 
-const Header = ({ className, smoothScroll }) => {
+const Header = ({ className }) => {
   return (
     <header className={className}>
       <TopBlock />

@@ -1,116 +1,81 @@
-import React, { useState } from "react"
+import React, { useLayoutEffect } from "react"
 import styled from "styled-components"
-import { isEmail } from "validator"
-import ajax from "../ajax"
+import Form from "../components/pages/kontakt/Form/Form"
+import { SmoothScrollContext } from "../layouts"
+import useScrollReset from "../hooks/useScrollReset"
+import RotatedTitle from "../components/abstracts/RotatedTitle"
+import { fullSizeAbsolute } from "../styles/mixins"
 
 const Main = styled.main`
   height: 100vh;
   padding: 10rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  & > * {
+    z-index: 10;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 20%;
+    height: 70%;
+    ${({ theme }) => `
+      background-color: ${theme.colorGrey1};
+    `}
+  }
 `
 
-export default () => {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    title: "",
-    message: "",
-  })
-  const [errorMessage, setErrorMessage] = useState("")
-  const { name, email, title, message } = form
-
-  const onFormChange = e => {
-    const { value, name } = e.target
-    setForm({ ...form, [name]: value })
+const Circle = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  clip-path: circle(50% at 50% 50%);
+  width: 40rem;
+  height: 40rem;
+  z-index: 5;
+  transform: translate(40%, 40%);
+  ${({ theme }) => `
+    background-color: ${theme.colorGrey3};
+  `}
+  &:after {
+    content: "";
+    ${fullSizeAbsolute}
+    transform: scale(0.99);
+    clip-path: circle(50% at 50% 50%);
+    ${({ theme }) => `
+      background-color: ${theme.colorGrey2};
+    `}
   }
+`
 
-  const onSubmit = async e => {
-    e.preventDefault()
-    let valid = true
-    const stringValidation = (length, limit, name) => {
-      if (length < 5 || length > limit) {
-        valid = false
-        setErrorMessage(
-          `${name} musi posiadać conajmniej 5 znaków oraz mniej niż 31.`
-        )
-      }
-    }
+const Title = styled(RotatedTitle)`
+  ${({ theme }) => `
+    color: ${theme.colorGrey3_4};
+  `}
+`
 
-    Object.keys(form).forEach(key => {
-      const length = form[key].length
-      switch (key) {
-        case "name":
-          stringValidation(length, 30, "Imie")
-          break
-        case "title":
-          stringValidation(length, 30, "Tytuł")
-          break
-        case "email":
-          if (!isEmail(email)) {
-            valid = false
-            setErrorMessage("Niepoprawny adres email.")
-          }
-          break
-        case "message":
-          stringValidation(length, 300, "Wiadomość")
-          break
-      }
-    })
+const Contact = ({ smoothScroll }) => {
+  useScrollReset(smoothScroll)
 
-    if (valid) {
-      const data = {
-        from: `${name} ${email}`,
-        to: "wilkbartosz98@wp.pl",
-        subject: title,
-        text: message,
-      }
-      const response = await ajax(
-        "POST",
-        "https://wilkmailsender.herokuapp.com/mails",
-        data,
-        201
-      )
-      if (response.error) {
-        setErrorMessage(
-          "Ups. Coś poszło nie tak, zapraszam do wysłania maila ze swojej skrzynki pocztowej."
-        )
-      } else {
-        setErrorMessage("Wiadomość wysłana")
-      }
-    }
-  }
+  useLayoutEffect(() => {
+    smoothScroll.setSize()
+  }, [])
 
   return (
     <Main>
-      <form onSubmit={onSubmit}>
-        <label>
-          <span>Imie</span>
-          <input name="name" type="text" onChange={onFormChange} value={name} />
-        </label>
-        <label>
-          <span>Email</span>
-          <input
-            name="email"
-            type="email"
-            onChange={onFormChange}
-            value={email}
-          />
-        </label>
-        <label>
-          <span>Tytuł</span>
-          <input
-            name="title"
-            type="text"
-            onChange={onFormChange}
-            value={title}
-          />
-        </label>
-        <label>
-          <span>Wiadomość</span>
-          <textarea name="message" onChange={onFormChange} value={message} />
-        </label>
-        <button>send</button>
-        {errorMessage && <span>{errorMessage}</span>}
-      </form>
+      <Form />
+      <Title>Kontakt.</Title>
+      <Circle />
     </Main>
   )
 }
+
+export default () => (
+  <SmoothScrollContext.Consumer>
+    {smoothScroll => smoothScroll && <Contact smoothScroll={smoothScroll} />}
+  </SmoothScrollContext.Consumer>
+)

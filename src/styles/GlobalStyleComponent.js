@@ -68,4 +68,10 @@ export default createGlobalStyle`
         background: ${theme.colorGrey2}
       `}
     }
+
+    input, textarea {
+        &:focus{
+            outline: none;
+        }
+    }
 `
