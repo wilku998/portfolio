@@ -18,7 +18,7 @@ export const SkillsTitle = styled.h2`
 `
 
 export const Item = styled.section`
-  height: 55rem;
+  height: 50rem;
   display: flex;
 `
 

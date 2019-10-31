@@ -187,8 +187,13 @@ const Projects = ({ smoothScroll }) => {
                 project={e}
                 ref={selectedProject}
                 isSelected={i === position}
-                transform={`translateX(${i -
-                  position}00%) translateX(${translateX}px)`}
+                style={{
+                  transform: `translateX(${i -
+                    position}00%) translateX(${translateX}px) scale(${
+                    i === position ? 1 : 0.9
+                  })`,
+                  opacity: i === position ? 1 : 0,
+                }}
               />
             ))}
           </ProjectsContainer>

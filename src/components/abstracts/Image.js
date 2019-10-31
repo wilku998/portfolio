@@ -10,28 +10,37 @@ export const ImageContainer = styled.div`
 
 export const ImageContent = styled.div`
   position: absolute;
-  top: -100px;
-  left: -100px;
-  height: calc(100% + 200px);
-  width: calc(100% + 200px);
   will-change: transform;
-  ${({src}) => `
+  ${({ src, translate }) => `
+    ${
+      translate === "translateX"
+        ? `
+          top: -100px;
+          left: -100px;
+          height: calc(100% + 200px);
+          width: calc(100% + 200px);
+        ` : `
+          left: 0;
+          top: -50px;
+          height: calc(100% + 100px);
+          width: 100%;`
+    }
     background: url("${src}") center/cover no-repeat;
   `}
 `
 
-export default ({ src, smoothScroll }) => {
+export default ({ src, smoothScroll, translate }) => {
   const imageRef = useRef()
 
   useLayoutEffect(() => {
     if (smoothScroll) {
-      smoothScroll.addItem(imageRef.current)
+      smoothScroll.addItem(imageRef.current, translate)
     }
   }, [smoothScroll])
 
   return (
     <ImageContainer ref={imageRef}>
-      <ImageContent src={src} />
+      <ImageContent translate={translate} src={src} />
     </ImageContainer>
   )
 }

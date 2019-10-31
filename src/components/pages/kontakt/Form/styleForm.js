@@ -5,7 +5,6 @@ export default Form => styled(Form)`
   display: flex;
   flex-direction: column;
   flex: 0 1 100rem;
-  clip-path: polygon(0 0, 80% 0, 100% 100%, 0% 100%);
 `
 
 export const Label = styled.label`

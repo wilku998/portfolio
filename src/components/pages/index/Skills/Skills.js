@@ -28,9 +28,10 @@ const Skills = ({ className, smoothScroll }) => {
       <SkillsTitle>Umiejętności</SkillsTitle>
       <Item>
         <FrontendImage>
+          {/* Photo by gryffyn m on Unsplash */}
           <Image
             smoothScroll={smoothScroll}
-            src="/images/front-compressed.jpg"
+            src="/images/front-2.jpg"
           />
         </FrontendImage>
         <FrontedContent ref={frontend}>
@@ -71,10 +72,11 @@ const Skills = ({ className, smoothScroll }) => {
             klientem za pomocą websockets.
           </p>
         </BackendContent>
+        {/* Photo by Peter Ivey-Hansen on Unsplash */}
         <BackendImage>
           <Image
             smoothScroll={smoothScroll}
-            src="/images/back-compressed.jpg"
+            src="/images/back-2.jpg"
           />
         </BackendImage>
       </Item>

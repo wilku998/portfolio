@@ -25,8 +25,8 @@ export class SmoothScroll {
     this.callbacks = [...this.callbacks, callback]
   }
 
-  addItem(item) {
-    this.items.push(new Item(item))
+  addItem(item, translate) {
+    this.items.push(new Item(item, translate))
   }
 
   update() {

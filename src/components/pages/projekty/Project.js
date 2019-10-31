@@ -14,13 +14,13 @@ import style, {
 } from "./styleProjects"
 
 const Project = React.forwardRef(
-  ({ project, className, transform, isSelected }, ref) => {
+  ({ project, className, style, isSelected }, ref) => {
     const { images, description, technologies } = project
     return (
       <section
         ref={isSelected ? ref : undefined}
         className={className}
-        style={{ transform }}
+        style={style}
       >
         <Description>
           <DescriptionContent>

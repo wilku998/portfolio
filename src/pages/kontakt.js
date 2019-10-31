@@ -24,7 +24,7 @@ const Main = styled.main`
     width: 20%;
     height: 70%;
     ${({ theme }) => `
-      background-color: ${theme.colorGrey1};
+      background-color: ${theme.colorGrey3};
     `}
   }
 `
@@ -52,12 +52,6 @@ const Circle = styled.div`
   }
 `
 
-const Title = styled(RotatedTitle)`
-  ${({ theme }) => `
-    color: ${theme.colorGrey3_4};
-  `}
-`
-
 const Contact = ({ smoothScroll }) => {
   useScrollReset(smoothScroll)
 
@@ -68,7 +62,7 @@ const Contact = ({ smoothScroll }) => {
   return (
     <Main>
       <Form />
-      <Title>Kontakt.</Title>
+      <RotatedTitle>Kontakt</RotatedTitle>
       <Circle />
     </Main>
   )

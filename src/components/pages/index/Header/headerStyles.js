@@ -1,73 +1,52 @@
 import styled, { keyframes } from "styled-components"
-import { centerAbsolute } from "../../../../styles/mixins"
-
-const showContent = keyframes`
-  from {
-    left: 0;
-  }
-  to {
-    left: 40rem;
-  }
-`
+import { centerAbsolute, fullSizeAbsolute } from "../../../../styles/mixins"
 
 export default Header => styled(Header)`
   width: 100%;
   height: 100vh;
   position: relative;
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.025);
-    ${({ theme }) => `
-      background: ${theme.colorGrey1}
-    `}
-    animation: ${showContent} 1s 1s both ease-out;
-  }
+`
+export const HeaderImageContainer = styled.div`
+  ${centerAbsolute}
+  perspective: 20px;
 `
 
+export const HeaderImage = styled.div`
+  height: 30rem;
+  width: 30rem;
+  flex: 1;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+  transition: all 0.5s;
+  will-change: transform;
+`
 
-
-export const TopBlock = styled.div`
-  flex: 0 0 20%;
+export const ImageTitle = styled.h2`
+  ${centerAbsolute}
   z-index: 10;
-  width: 100%;
-  height: 25%;
-  position: relative;
-
-  &:after {
-    content: "";
-    position: absolute;
-    top: calc(100% + 2rem);
-    left: 0;
-    width: 100%;
-    height: 2px;
-  }
-
+  font-size: 1.6rem;
   ${({ theme }) => `
-    border-bottom: 2px ${theme.colorGrey2} solid;
-    &:after{
-      background-color: ${theme.colorGrey2};
-    }
+    color: ${theme.colorGrey2};
   `}
 `
-
-
 export const Content = styled.div`
-  padding: 10rem 5rem 4rem 5rem;
-  width: 40rem;
-  flex: 1;
+  padding: 0 5rem 4rem 5rem;
+  flex: 0 1 40rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /* background: rgba(0, 0, 0, .25); */
+  & > * {
+    position: relative;
+    z-index: 10;
+  }
 `
 
-export const ShortBio = styled.p``
+export const ShortBio = styled.p`
+  font-size: 1.4rem;
+`
 
 export const BioTitle = styled.h3`
   font-size: 1.6rem;
@@ -91,6 +70,7 @@ const showTitle = keyframes`
 
 export const Title = styled.h1`
   font-size: 4rem;
+  margin-top: 20vw;
   line-height: 1;
   animation: ${showTitle} 1s 2s both;
 `
@@ -98,4 +78,3 @@ export const Title = styled.h1`
 export const SubTitle = styled.div`
   font-size: 1.4rem;
 `
-
