@@ -11,8 +11,9 @@ import style, {
 } from "./headerStyles"
 import Image from "../../../abstracts/Image"
 import RotatedTitle from "../../../abstracts/RotatedTitle"
+import chooseLang from "../../../../functions/chooseLang"
 
-const Header = ({ className, smoothScroll }) => {
+const Header = ({ className, smoothScroll, lang }) => {
   const imageContainerRef = useRef()
   const imageRef = useRef()
 
@@ -20,9 +21,15 @@ const Header = ({ className, smoothScroll }) => {
     const image = imageRef.current
     const imageContainer = imageContainerRef.current
     if (image) {
-      const {left, top, width, height} = image.getBoundingClientRect();
-      const _x = left + Math.floor(width / 2)
-      const _y = top + Math.floor(height / 2)
+      let _x, _y = 0;
+
+      const setImageCenterPos = () => {
+        const { left, top, width, height } = image.getBoundingClientRect()
+        _x = left + Math.floor(width / 2)
+        _y = top + Math.floor(height / 2)
+      }
+
+      setImageCenterPos();
 
       let counter = 0
       const updateRate = 10
@@ -58,10 +65,12 @@ const Header = ({ className, smoothScroll }) => {
       imageContainer.addEventListener("mouseenter", onMouseEnter)
       imageContainer.addEventListener("mouseleave", onMouseLeave)
       imageContainer.addEventListener("mousemove", onMouseMove)
+      window.addEventListener("resize", setImageCenterPos)
       return () => {
         imageContainer.removeEventListener("mouseenter", onMouseEnter)
         imageContainer.removeEventListener("mouseleave", onMouseLeave)
         imageContainer.removeEventListener("mousemove", onMouseMove)
+        window.removeEventListener("resize", setImageCenterPos)
       }
     }
   }, [])
@@ -74,10 +83,17 @@ const Header = ({ className, smoothScroll }) => {
           <SubTitle>Junior frontend developer</SubTitle>
         </Title>
         <div>
-          <BioTitle>O mnie</BioTitle>
+          <BioTitle>
+            {chooseLang({ pl: "Poznaj mnie", en: "About me" }, lang)}
+          </BioTitle>
           <ShortBio>
-            Tworzę strony oraz aplikacje internetowe korzystając z najnowszych
-            technologii.
+            {chooseLang(
+              {
+                pl: `Tworzę strony oraz aplikacje internetowe korzystając z najnowszych technologii.`,
+                en: "I create websites and web applications using the newest technologies.",
+              },
+              lang
+            )}
           </ShortBio>
         </div>
       </Content>
@@ -88,7 +104,7 @@ const Header = ({ className, smoothScroll }) => {
           <Image
             translate="translateX"
             smoothScroll={smoothScroll}
-            src="/images/header.jpg"
+            src="/images/header-compressed.jpg"
           />
         </HeaderImage>
       </HeaderImageContainer>

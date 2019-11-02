@@ -1,20 +1,45 @@
 import React from "react"
-import style, { NavLink } from "./navigationStyles"
+import style, { NavLink, Side, NavButton } from "./navigationStyles"
+import { Link } from "gatsby"
+import chooseLang from "../../functions/chooseLang"
 
 const links = [
-  { link: "/", title: "O mnie" },
-  { link: "/projekty", title: "Projekty" },
-  { link: "/kontakt", title: "Kontakt" },
+  { link: "/", pl: "O mnie", en: "About me" },
+  { link: "/projekty", pl: "Projekty", en: "Projects" },
+  { link: "/kontakt", pl: "Kontakt", en: "Contact" },
 ]
 
-const Navigation = ({ className }) => {
+const Navigation = ({ className, lang }) => {
+  const onLangClick = e => {
+    lang.setLang(e.target.lang)
+  }
   return (
     <nav className={className}>
-      {links.map(e => (
-        <NavLink key={e.link} activeClassName="navLinkActive" to={e.link}>
-          <span>{e.title}</span>
-        </NavLink>
-      ))}
+      <Side>
+        {["en", "pl"].map(e => (
+          <NavButton
+            onClick={onLangClick}
+            isSelected={e === lang.lang}
+            lang={e}
+            role="button"
+            key={e}
+          >
+            <span lang={e}>{e}</span>
+          </NavButton>
+        ))}
+      </Side>
+      <Side>
+        {links.map(e => (
+          <NavLink
+            as={Link}
+            key={e.link}
+            activeClassName="navLinkActive"
+            to={e.link}
+          >
+            <span>{chooseLang(e, lang)}</span>
+          </NavLink>
+        ))}
+      </Side>
     </nav>
   )
 }

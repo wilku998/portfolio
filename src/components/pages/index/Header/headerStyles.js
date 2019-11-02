@@ -9,7 +9,7 @@ export default Header => styled(Header)`
 `
 export const HeaderImageContainer = styled.div`
   ${centerAbsolute}
-  perspective: 20px;
+  perspective: 15px;
 `
 
 export const HeaderImage = styled.div`

@@ -1,33 +1,61 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import Title from "../../../abstracts/Title"
 
 export default Skills => styled(Skills)`
+  margin-top: 20rem;
   display: flex;
   flex-direction: column;
-  margin-top: 20rem;
 `
 
-export const SkillsTitle = styled.h2`
-  text-align: center;
-  font-size: 5rem;
-  margin-bottom: 5rem;
-  &:after {
-    left: initial;
-    right: 0.5rem;
+const Item = styled.section`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: repeat(3, max-content) 1fr;
+  grid-gap: 0 5rem;
+  &:not(:last-child) {
+    margin-bottom: 20rem;
   }
 `
 
-export const Item = styled.section`
-  height: 50rem;
-  display: flex;
+export const OddItem = styled(Item)`
+  ${({ theme }) => `
+    padding-left: ${theme.verticalPadding};
+  `}
 `
 
-export const FrontendImage = styled.div`
-  width: 60rem;
+export const EvenItem = styled(Item)`
+  text-align: right;
+  ${({ theme }) => `
+    padding-right: ${theme.verticalPadding};
+  `}
 `
 
-export const BackendImage = styled.div`
-  flex: 1;
+export const SkillsTitle = styled.h2`
+  grid-column: 1/3;
+  text-align: center;
+  font-size: 6rem;
+  margin-bottom: 5rem;
+  ${({ theme }) => `
+    padding: 0 ${theme.verticalPadding};
+  `}
+`
+
+const oddItem = css`
+  grid-column: 3/4;
+`
+
+const evenItem = css`
+  grid-column: 1/2;
+`
+
+export const OddItemImage = styled.div`
+  grid-row: 1/4;
+  grid-column: 2/4;
+`
+
+export const EvenItemImage = styled.div`
+  grid-row: 1/4;
+  grid-column: 1/3;
 `
 
 export const ItemContent = styled.div`
@@ -39,26 +67,12 @@ export const ItemContent = styled.div`
   z-index: 10;
 `
 
-export const FrontedContent = styled(ItemContent)`
-  padding: 0 20rem 0 5rem;
-  margin-left: -10rem;
-  flex: 1;
-`
-
-export const BackendContent = styled(ItemContent)`
-  padding: 0 5rem;
-  margin-right: -10rem;
-  flex: 0 0 70rem;
-  align-items: flex-end;
-  text-align: end;
-`
-
-export const ItemTitle = styled(Title)`
+const ItemTitle = styled(Title)`
   font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 1rem;
   padding: 0 1rem;
-  ${({theme}) => `
+  ${({ theme }) => `
     color: ${theme.colorGrey5};
   `}
 
@@ -67,27 +81,47 @@ export const ItemTitle = styled(Title)`
     background-color: white;
   }
 `
-
-export const FrontendTitle = styled(ItemTitle)`
-  align-self: flex-start;
+export const OddItemTitle = styled(ItemTitle)`
+  justify-self: start;
+  ${evenItem}
 `
 
-export const BackendTitle = styled(ItemTitle)`
-  align-self: flex-end;
+export const EvenItemTitle = styled(ItemTitle)`
+  justify-self: end;
+  ${oddItem}
+  grid-row: 1/2;
 `
 
-export const SkillsList = styled.ul`
-  display: flex;
-  font-size: 1.8rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  ${({ theme }) => `
-    padding: 8rem ${theme.verticalPadding} 6rem ${theme.verticalPadding};
-  `}
+const ItemList = styled.ul`
+  font-size: 1.4rem;
   & > li {
-    margin-bottom: 2rem;
+    padding: 0.5rem 0;
     &:not(:last-child) {
-      margin-right: 5rem;
+      ${({ theme }) => `
+        border-bottom: 1px solid ${theme.colorGrey3}
+      `}
     }
   }
+`
+
+export const OddItemList = styled(ItemList)`
+  ${evenItem}
+`
+
+export const EvenItemList = styled(ItemList)`
+  ${oddItem}
+  grid-row: 3/4;
+`
+
+export const Desc = styled.p`
+  margin-bottom: 6rem;
+`
+
+export const OddItemDesc = styled(Desc)`
+  ${evenItem}
+`
+
+export const EvenItemDesc = styled(Desc)`
+  ${oddItem}
+  grid-row: 2/3;
 `

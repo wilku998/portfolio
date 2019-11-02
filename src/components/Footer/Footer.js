@@ -10,8 +10,9 @@ import style, {
   ContactLink,
   ItemTitle,
 } from "./footerStyles"
+import chooseLang from "../../functions/chooseLang"
 
-const Footer = React.forwardRef(({ className }, ref) => (
+const Footer = React.forwardRef(({ className, lang }, ref) => (
   <footer ref={ref} className={className}>
     <Email>
       <ItemTitle>email</ItemTitle>
@@ -22,17 +23,56 @@ const Footer = React.forwardRef(({ className }, ref) => (
       <span>https://github.com/wilku998</span>
     </Github>
     <Telephone>
-      <ItemTitle>telefon</ItemTitle>
+      <ItemTitle>
+        {chooseLang(
+          {
+            pl: "Telefon",
+            en: "Telephone",
+          },
+          lang
+        )}
+      </ItemTitle>
       <span>+48 570 706 596</span>
     </Telephone>
     <PhotosCredit>
-      Wszystkie fotografie, poza zdjęciami projektów zostały pobrane ze strony
-      unsplah
+      {chooseLang(
+        {
+          pl:
+            "Wszystkie fotografie, poza zdjęciami projektów oraz tym przedstawiającym mnie zostały pobrane ze strony unsplash.com",
+          en:
+            "All photos except projects images and photo of myself are downloaded from site unsplash.com",
+        },
+        lang
+      )}
     </PhotosCredit>
-    <PrivacyPolicy>2019 wszystkie prawa zastrzeżone</PrivacyPolicy>
+    <PrivacyPolicy>
+      {chooseLang(
+        {
+          pl: "2019 Wszystkie prawa zastrzeżone",
+          en: "2019 All rights reserved",
+        },
+        lang
+      )}
+    </PrivacyPolicy>
     <Contact>
-      <ContactTitle>Zainteresowany współpracą?</ContactTitle>
-      <ContactLink to="/kontakt">Formularz kontaktowy</ContactLink>
+      <ContactTitle>
+        {chooseLang(
+          {
+            pl: "Zainteresowany współpracą?",
+            en: "Are you interested in teamwork?",
+          },
+          lang
+        )}
+      </ContactTitle>
+      <ContactLink to="/kontakt">
+        {chooseLang(
+          {
+            pl: "Formularz kontaktowy",
+            en: "Contact form",
+          },
+          lang
+        )}
+      </ContactLink>
     </Contact>
   </footer>
 ))

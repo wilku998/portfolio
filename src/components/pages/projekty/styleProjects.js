@@ -2,7 +2,7 @@ import styled from "styled-components"
 import GhostButton from "../../abstracts/GhostButton"
 import ReactSVG from "react-svg"
 import { fullSizeAbsolute, centerAbsolute } from "../../../styles/mixins"
-import Title from "../../abstracts/Title";
+import Title from "../../abstracts/Title"
 
 export default Project => styled(Project)`
   position: absolute;
@@ -43,7 +43,7 @@ export const DescriptionTitle = styled.h3`
   font-weight: 600;
   font-size: 1.6rem;
   margin-bottom: 1rem;
-  letter-spacing: .2rem;
+  letter-spacing: 0.2rem;
 `
 
 export const Technologies = styled.div`
@@ -67,14 +67,14 @@ export const DescriptionContent = styled.div`
   display: flex;
   flex-direction: column;
 `
-export const Button = styled(GhostButton)`
+export const Link = styled(GhostButton)`
   font-size: 1.4rem;
   &:not(:last-child) {
     margin-right: 2rem;
   }
 `
 
-export const ButtonsContainer = styled.div`
+export const LinksContainer = styled.div`
   margin-top: auto;
 `
 
@@ -128,33 +128,28 @@ export const Image = styled.img`
 `
 
 export const MoveIcon = styled(ReactSVG)`
+  height: 100%;
+  padding: 0 1.5rem;
   cursor: pointer;
   ${({ theme }) => `
     fill: ${theme.colorGrey5};
   `}
 
   & svg {
-    position: absolute;
+    ${centerAbsolute}
     width: 1.5rem;
-    top: 50%;
   }
 `
 
 export const MoveIconContainer = styled.div`
-  width: 2.5rem;
   position: relative;
 `
 
 export const MoveIconLeft = styled(MoveIcon)`
-  & svg {
-    left: 0;
-    transform: translateY(-50%);
-  }
 `
 
 export const MoveIconRight = styled(MoveIcon)`
   & svg {
-    right: 0;
-    transform: translateY(-50%) rotate(180deg);
+    transform: translate(-50%, -50%) rotate(180deg);
   }
 `

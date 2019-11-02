@@ -20,36 +20,40 @@ const Scrollable = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  
+
   & > * {
     position: relative;
     z-index: 10;
   }
 `
 
-export const SmoothScrollContext = createContext()
+export const Context = createContext()
 
 export default ({ children }) => {
   const [smoothScroll, setSmoothScroll] = useState()
+  const [lang, setLang] = useState("pl")
   const body = useRef()
   const scrollable = useRef()
   const footer = useRef()
   useLayoutEffect(() => {
-    setSmoothScroll(new SmoothScroll(body.current, scrollable.current, footer.current))
+    setSmoothScroll(
+      new SmoothScroll(body.current, scrollable.current, footer.current)
+    )
   }, [])
 
+  const langObj = { setLang, lang };
   return (
-    <SmoothScrollContext.Provider value={smoothScroll}>
+    <Context.Provider value={{ smoothScroll, lang: langObj }}>
       <div ref={body}>
         <ThemeProvider theme={theme}>
           <GlobalStyleComponent />
-          <Navigation />
+          <Navigation lang={langObj} />
           <Scrollable ref={scrollable}>
-              <Container>{children}</Container>
+            <Container>{children}</Container>
           </Scrollable>
-          <Footer ref={footer} />
+          <Footer lang={langObj} ref={footer} />
         </ThemeProvider>
       </div>
-    </SmoothScrollContext.Provider>
+    </Context.Provider>
   )
 }

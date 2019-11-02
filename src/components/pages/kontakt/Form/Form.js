@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { isEmail } from "validator"
-import ajax from "../../../../ajax"
+import ajax from "../../../../functions/ajax"
 import style, { Label, Input, Button, Info } from "./styleForm"
+import chooseLang from "../../../../functions/chooseLang"
 
 const initialFormState = {
   name: "",
@@ -10,9 +11,9 @@ const initialFormState = {
   message: "",
 }
 
-const Form = ({ className }) => {
+const Form = ({ className, lang }) => {
   const [form, setForm] = useState(initialFormState)
-  const [info, setInfo] = useState("Imię musi posiadać conajmniej 5 znaków oraz mniej niż 31.")
+  const [info, setInfo] = useState("")
   const { name, email, title, message } = form
 
   const onFormChange = e => {
@@ -26,7 +27,15 @@ const Form = ({ className }) => {
     const stringValidation = (length, limit, name) => {
       if (length < 5 || length > limit) {
         valid = false
-        setInfo(`${name} musi posiadać conajmniej 5 znaków oraz mniej niż 31.`)
+        setInfo(
+          `${name} ${chooseLang(
+            {
+              en: "have to contain more than 5 chars and less than 31.",
+              pl: "musi posiadać conajmniej 5 znaków oraz mniej niż 31.",
+            },
+            lang
+          )}`
+        )
       }
     }
 
@@ -34,19 +43,45 @@ const Form = ({ className }) => {
       const length = form[key].length
       switch (key) {
         case "name":
-          stringValidation(length, 30, "Imie")
+          stringValidation(
+            length,
+            30,
+            chooseLang({ en: "Name", pl: "Imię" }, lang)
+          )
           break
         case "title":
-          stringValidation(length, 30, "Tytuł")
+          stringValidation(
+            length,
+            30,
+            chooseLang({ en: "Title", pl: "Tytuł" }, lang)
+          )
           break
         case "email":
           if (!isEmail(email)) {
             valid = false
-            setInfo("Niepoprawny adres email.")
+            setInfo(
+              chooseLang(
+                {
+                  en: "Invalid email address.",
+                  pl: "Niepoprawny adres email.",
+                },
+                lang
+              )
+            )
           }
           break
         case "message":
-          stringValidation(length, 500, "Wiadomość")
+          stringValidation(
+            length,
+            500,
+            chooseLang(
+              {
+                en: "Message",
+                pl: "Wiadomość",
+              },
+              lang
+            )
+          )
           break
       }
     })
@@ -66,23 +101,63 @@ const Form = ({ className }) => {
       )
       if (response.error) {
         setInfo(
-          "Ups. Coś poszło nie tak, zapraszam do wysłania maila ze swojej skrzynki pocztowej."
+          chooseLang(
+            {
+              pl:
+                "Ups. Coś poszło nie tak, zapraszam do wysłania maila ze swojej skrzynki pocztowej.",
+              en:
+                "Ups. Something went wrong. I invite you to send me an email by yourself.",
+            },
+            lang
+          )
         )
       } else {
         setForm(initialFormState)
-        setInfo("Wiadomość wysłana.")
+        setInfo(
+          chooseLang(
+            {
+              pl: "Wiadomość wysłana.",
+              en: "Message sent.",
+            },
+            lang
+          )
+        )
       }
     }
   }
 
+  useEffect(() => {
+    setInfo("")
+  }, [lang.lang])
+
+  const textContent = chooseLang(
+    {
+      pl: {
+        name: "Imię",
+        email: "Email",
+        title: "Tytuł",
+        message: "Wiadomość",
+        button: "Wyślij wiadomość",
+      },
+      en: {
+        name: "Name",
+        email: "Email",
+        title: "Title",
+        message: "Message",
+        button: "Send message",
+      },
+    },
+    lang
+  )
+
   return (
     <form className={className} onSubmit={onSubmit}>
       <Label>
-        <span>Imie</span>
+        <span>{textContent.name}</span>
         <Input name="name" type="text" onChange={onFormChange} value={name} />
       </Label>
       <Label>
-        <span>Email</span>
+        <span>{textContent.email}</span>
         <Input
           name="email"
           type="email"
@@ -91,11 +166,11 @@ const Form = ({ className }) => {
         />
       </Label>
       <Label>
-        <span>Tytuł</span>
+        <span>{textContent.title}</span>
         <Input name="title" type="text" onChange={onFormChange} value={title} />
       </Label>
       <Label>
-        <span>Wiadomość</span>
+        <span>{textContent.message}</span>
         <Input
           as="textarea"
           rows="10"
@@ -107,7 +182,7 @@ const Form = ({ className }) => {
         />
       </Label>
       {info && <Info>{info}</Info>}
-      <Button>Wyślij wiadomość</Button>
+      <Button>{textContent.button}</Button>
     </form>
   )
 }

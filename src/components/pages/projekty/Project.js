@@ -5,17 +5,36 @@ import style, {
   DescriptionTitle,
   Technologies,
   List,
-  Button,
+  Link,
   DescriptionContent,
-  ButtonsContainer,
+  LinksContainer,
   Paragraph,
   Image,
   FakeImage,
 } from "./styleProjects"
+import chooseLang from "../../../functions/chooseLang"
 
 const Project = React.forwardRef(
-  ({ project, className, style, isSelected }, ref) => {
-    const { images, description, technologies } = project
+  ({ project, className, style, isSelected, lang }, ref) => {
+    const { images, description, technologies, liveUrl, githubUrl } = project
+    console.log(project)
+    const textContent = chooseLang(
+      {
+        pl: {
+          descriptionTitle: "Opis projektu",
+          linkCode: "Zobacz kod",
+          linkLive: "Zobacz projekt",
+          technologiesTitle: "Technologie",
+        },
+        en: {
+          descriptionTitle: "Project description",
+          linkCode: "See code",
+          linkLive: "See project",
+          technologiesTitle: "Technologies",
+        },
+      },
+      lang
+    )
     return (
       <section
         ref={isSelected ? ref : undefined}
@@ -24,15 +43,19 @@ const Project = React.forwardRef(
       >
         <Description>
           <DescriptionContent>
-            <DescriptionTitle>Opis projektu</DescriptionTitle>
+            <DescriptionTitle>{textContent.descriptionTitle}</DescriptionTitle>
             <Paragraph>{description}</Paragraph>
-            <ButtonsContainer>
-              <Button>Zobacz projekt</Button>
-              <Button>Zobacz kod</Button>
-            </ButtonsContainer>
+            <LinksContainer>
+              <Link as="a" href={liveUrl} target="_blank">
+                {textContent.linkLive}
+              </Link>
+              <Link as="a" href={githubUrl} target="_blank">
+                {textContent.linkCode}
+              </Link>
+            </LinksContainer>
           </DescriptionContent>
           <Technologies>
-            <DescriptionTitle>Technologie</DescriptionTitle>
+            <DescriptionTitle>{textContent.technologiesTitle}</DescriptionTitle>
             <List>
               {technologies.map(e => (
                 <li key={e}>{e}</li>

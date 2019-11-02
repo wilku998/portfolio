@@ -4,7 +4,6 @@ export default class Item {
   constructor(el, translate) {
     this.DOM = { el: el, translate }
     this.DOM.image = this.DOM.el.querySelector("div")
-    console.log(translate)
     this.renderedStyles = {
       innerTranslationY: {
         previous: 0,

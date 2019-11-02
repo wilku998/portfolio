@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect, useEffect } from "react"
+import React, { useState, useRef, useLayoutEffect } from "react"
 import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
 import {
@@ -8,10 +8,11 @@ import {
   ProjectTitle,
   MoveIconContainer,
 } from "../components/pages/projekty/styleProjects"
-import { SmoothScrollContext } from "../layouts"
+import { Context } from "../layouts/index"
 import Project from "../components/pages/projekty/Project"
 import useLoadImages from "../hooks/useLoadImages"
 import useScrollReset from "../hooks/useScrollReset"
+import chooseLang from "../functions/chooseLang"
 
 const Main = styled.main`
   overflow: hidden;
@@ -22,18 +23,25 @@ const ProjectsContainer = styled.div`
   position: relative;
 `
 
-const Projects = ({ smoothScroll }) => {
+const Projects = ({ smoothScroll, lang }) => {
   const data = useStaticQuery(graphql`
     query {
-      allContentfulProject {
+      allContentfulProject (
+        sort: {
+          fields: [createdAt]
+          order: ASC
+        }
+      ) {
         edges {
           node {
             descriptionPl {
               descriptionPl
             }
-            descriptionEng {
-              descriptionEng
+            descriptionEn {
+              descriptionEn
             }
+            liveUrl
+            githubUrl
             title
             images {
               id
@@ -49,12 +57,18 @@ const Projects = ({ smoothScroll }) => {
       }
     }
   `)
-  const projectsData = data.allContentfulProject.edges.map(e => ({
-    ...e.node,
-    description: e.node.descriptionPl.descriptionPl,
-    descriptionEng: e.node.descriptionEng.descriptionEng,
-    images: e.node.images.map(e => e.fluid.src),
+  const projectsData = data.allContentfulProject.edges.map(({ node }) => ({
+    ...node,
+    description: chooseLang(
+      {
+        pl: node.descriptionPl.descriptionPl,
+        en: node.descriptionEn.descriptionEn,
+      },
+      lang
+    ),
+    images: node.images.map(e => e.fluid.src),
   }))
+
   const images = []
   projectsData.forEach(project => project.images.forEach(e => images.push(e)))
   const imagesLoaded = useLoadImages(images)
@@ -151,8 +165,8 @@ const Projects = ({ smoothScroll }) => {
         window.removeEventListener("resize", setSize)
       }
     }
-  }, [position, imagesLoaded])
-  console.log(translateX)
+  }, [position, imagesLoaded, lang.lang])
+
   return (
     <Main ref={main}>
       {imagesLoaded && (
@@ -183,6 +197,7 @@ const Projects = ({ smoothScroll }) => {
           <ProjectsContainer>
             {projectsData.map((e, i) => (
               <Project
+                lang={lang}
                 key={e.title}
                 project={e}
                 ref={selectedProject}
@@ -204,7 +219,9 @@ const Projects = ({ smoothScroll }) => {
 }
 
 export default () => (
-  <SmoothScrollContext.Consumer>
-    {smoothScroll => smoothScroll && <Projects smoothScroll={smoothScroll} />}
-  </SmoothScrollContext.Consumer>
+  <Context.Consumer>
+    {({ smoothScroll, lang }) =>
+      smoothScroll && <Projects smoothScroll={smoothScroll} lang={lang} />
+    }
+  </Context.Consumer>
 )

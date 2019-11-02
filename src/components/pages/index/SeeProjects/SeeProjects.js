@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import { fullSizeAbsolute } from "../../../../styles/mixins"
+import chooseLang from "../../../../functions/chooseLang"
 
 const Text = styled.span`
   font-size: 2rem;
@@ -9,9 +10,9 @@ const Text = styled.span`
   z-index: 2;
 `
 
-const SeeProjects = ({ className }) => (
-  <Link to="/projects" className={className}>
-    <Text>Zobacz projekty</Text>
+const SeeProjects = ({ className, lang }) => (
+  <Link to="/projekty" className={className}>
+    <Text>{chooseLang({ pl: "Zobacz projekty", en: "See projects" }, lang)}</Text>
   </Link>
 )
 
@@ -22,18 +23,4 @@ export default styled(SeeProjects)`
   justify-content: center;
   align-items: center;
   position: relative;
-/* 
-  &:after {
-    content: "";
-    ${fullSizeAbsolute}
-    opacity: 0;
-    transition: all 1s;
-    ${({theme}) => `
-    background-color: ${theme.colorGrey1};
-  `}
-  }
-
-  &:hover:after {
-    opacity: 1;
-  } */
 `

@@ -1,0 +1,1 @@
+export default (data, lang) => data[lang.lang]

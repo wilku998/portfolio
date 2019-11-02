@@ -1,85 +1,61 @@
 import React, { useRef, useLayoutEffect } from "react"
 import style, {
+  OddItemImage,
+  EvenItemImage,
+  OddItemTitle,
+  OddItemList,
+  OddItemDesc,
+  EvenItemTitle,
+  EvenItemList,
+  EvenItemDesc,
+  EvenItem,
+  OddItem,
   SkillsTitle,
-  Item,
-  FrontedContent,
-  BackendContent,
-  FrontendImage,
-  BackendImage,
-  SkillsList,
-  FrontendTitle,
-  BackendTitle,
 } from "./styleSkills"
 import Image from "../../../abstracts/Image"
+import chooseLang from "../../../../functions/chooseLang"
 
-const Skills = ({ className, smoothScroll }) => {
-  const frontend = useRef()
-  const backend = useRef()
-
-  useLayoutEffect(() => {
-    if (smoothScroll) {
-      smoothScroll.addItem(frontend.current)
-      smoothScroll.addItem(backend.current)
-    }
-  }, [smoothScroll])
+const Skills = ({ className, smoothScroll, skills, lang }) => {
+  const isEven = n => n % 2 === 0
 
   return (
     <div className={className}>
-      <SkillsTitle>Umiejętności</SkillsTitle>
-      <Item>
-        <FrontendImage>
-          {/* Photo by gryffyn m on Unsplash */}
-          <Image
-            smoothScroll={smoothScroll}
-            src="/images/front-2.jpg"
-          />
-        </FrontendImage>
-        <FrontedContent ref={frontend}>
-          <FrontendTitle>
-            <span>Frontend</span>
-          </FrontendTitle>
-          <p>
-            Dobra znajomość vanilla js, zasad tworzenia semantycznego html,
-            flex-boxa oraz flex-grida. Tworzenie aplikacji w reactie z wieloma
-            innymi bibliotekami. Wyszukiwanie i rozwiązywanie problemów z
-            użyciem dokumentacji.
-          </p>
-        </FrontedContent>
-      </Item>
-      <SkillsList>
-        <li>ES6 +</li>
-        <li>SCSS</li>
-        <li>Typescript</li>
-        <li>AJAX</li>
-        <li>Gatsby.js</li>
-        <li>React</li>
-        <li>Redux</li>
-        <li>MobX</li>
-        <li>Styled-components</li>
-        <li>Node.js</li>
-        <li>Express.js</li>
-        <li>Socket.io</li>
-        <li>Mongoose</li>
-        <li>Rest API</li>
-      </SkillsList>
-      <Item>
-        <BackendContent ref={backend}>
-          <BackendTitle>
-            <span>Backend</span>
-          </BackendTitle>
-          <p>
-            Tworzenie własnego api obsługującego baze danych. Komunikacja z
-            klientem za pomocą websockets.
-          </p>
-        </BackendContent>
-        {/* Photo by Peter Ivey-Hansen on Unsplash */}
-        <BackendImage>
-          <Image
-            smoothScroll={smoothScroll}
-            src="/images/back-2.jpg"
-          />
-        </BackendImage>
-      </Item>
+      <SkillsTitle>
+        {chooseLang({ pl: "Umiejętności", en: "Skills" }, lang)}
+      </SkillsTitle>
+      {skills.map(({ title, description, image, technologies }, i) =>
+        isEven(i + 1) ? (
+          <EvenItem key={title}>
+            <EvenItemTitle>
+              <span>{title}</span>
+            </EvenItemTitle>
+            <EvenItemDesc>{description}</EvenItemDesc>
+            <EvenItemList>
+              {technologies.map(e => (
+                <li key={e}>{e}</li>
+              ))}
+            </EvenItemList>
+            <EvenItemImage>
+              <Image smoothScroll={smoothScroll} src={image} />
+            </EvenItemImage>
+          </EvenItem>
+        ) : (
+          <OddItem key={title}>
+            <OddItemImage>
+              <Image smoothScroll={smoothScroll} src={image} />
+            </OddItemImage>
+            <OddItemTitle>
+              <span>{title}</span>
+            </OddItemTitle>
+            <OddItemDesc>{description}</OddItemDesc>
+            <OddItemList>
+              {technologies.map(e => (
+                <li key={e}>{e}</li>
+              ))}
+            </OddItemList>
+          </OddItem>
+        )
+      )}
     </div>
   )
 }

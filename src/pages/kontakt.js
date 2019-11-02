@@ -1,10 +1,11 @@
 import React, { useLayoutEffect } from "react"
 import styled from "styled-components"
 import Form from "../components/pages/kontakt/Form/Form"
-import { SmoothScrollContext } from "../layouts"
+import { Context } from "../layouts"
 import useScrollReset from "../hooks/useScrollReset"
 import RotatedTitle from "../components/abstracts/RotatedTitle"
 import { fullSizeAbsolute } from "../styles/mixins"
+import chooseLang from "../functions/chooseLang"
 
 const Main = styled.main`
   height: 100vh;
@@ -52,7 +53,7 @@ const Circle = styled.div`
   }
 `
 
-const Contact = ({ smoothScroll }) => {
+const Contact = ({ smoothScroll, lang }) => {
   useScrollReset(smoothScroll)
 
   useLayoutEffect(() => {
@@ -61,15 +62,19 @@ const Contact = ({ smoothScroll }) => {
 
   return (
     <Main>
-      <Form />
-      <RotatedTitle>Kontakt</RotatedTitle>
+      <Form lang={lang} />
+      <RotatedTitle>
+        {chooseLang({ pl: "kontakt", en: "contact" }, lang)}
+      </RotatedTitle>
       <Circle />
     </Main>
   )
 }
 
 export default () => (
-  <SmoothScrollContext.Consumer>
-    {smoothScroll => smoothScroll && <Contact smoothScroll={smoothScroll} />}
-  </SmoothScrollContext.Consumer>
+  <Context.Consumer>
+    {({ smoothScroll, lang }) =>
+      smoothScroll && <Contact smoothScroll={smoothScroll} lang={lang} />
+    }
+  </Context.Consumer>
 )
