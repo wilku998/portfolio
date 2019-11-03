@@ -1,15 +1,19 @@
-import styled, { keyframes } from "styled-components"
+import styled, { keyframes, css } from "styled-components"
 import { centerAbsolute, fullSizeAbsolute } from "../../../../styles/mixins"
 
 export default Header => styled(Header)`
+  color: var(--color);
   width: 100%;
   position: relative;
   display: grid;
-  padding: 0 5rem 2rem 5rem;
+  padding: 0 var(--vertical-padding-small) 2rem var(--vertical-padding-small);
   height: 100vh;
   min-height: 60rem;
   grid-template-columns: 30rem 1fr 30rem;
   grid-template-rows: 1fr 30rem 1fr;
+  ${({ theme }) => theme.media.medium`
+    // padding-top: 5rem;
+  `}
 `
 export const HeaderImageContainer = styled.div`
   height: 100%;
@@ -19,6 +23,10 @@ export const HeaderImageContainer = styled.div`
   align-self: center;
   justify-self: center;
   perspective: 15px;
+
+  ${({ theme }) => theme.media.medium`
+    display: none;
+  `}
 `
 
 export const HeaderImage = styled.div`
@@ -73,6 +81,11 @@ export const Title = styled.h1`
   font-size: 4rem;
   line-height: 1;
   animation: ${showTitle} 1s 2s both;
+  /* ${({ theme }) => theme.media.medium`
+    font-size: 4rem;
+    grid-column: 1/2;
+    grid-row: 1/2;
+  `} */
 `
 
 export const SubTitle = styled.div`

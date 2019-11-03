@@ -11,16 +11,12 @@ export default Project => styled(Project)`
   display: flex;
   flex-direction: column;
   transition: all 0.5s ease-in-out;
-  ${({ theme }) => `
-    padding: 0 ${theme.verticalPadding} 30rem ${theme.verticalPadding};
-  `}
+  padding: 0 var(--vertical-padding) 30rem var(--vertical-padding);
 `
 
 export const TitleContainer = styled.div`
   display: flex;
-  ${({ theme }) => `
-    padding: 0 ${theme.verticalPadding} 2rem ${theme.verticalPadding};
-  `}
+  padding: 0 var(--vertical-padding) 2rem var(--vertical-padding);
 `
 
 export const ProjectTitle = styled(Title)`
@@ -30,7 +26,7 @@ export const ProjectTitle = styled(Title)`
 export const Description = styled.div`
   padding: 2.5rem 2.5rem 0 2.5rem;
   display: grid;
-  grid-gap: 4rem;
+  grid-gap: 2rem 4rem;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr;
   ${({ theme }) => `
@@ -49,6 +45,13 @@ export const DescriptionTitle = styled.h3`
 export const Technologies = styled.div`
   justify-self: end;
   text-align: center;
+  grid-column: 2/3;
+  ${({theme}) => theme.media.medium`
+    grid-column: 1/3;
+    grid-row: 2/3;
+    justify-self: start;
+    text-align: start;
+  `}
 `
 
 export const List = styled.ul`
@@ -60,12 +63,15 @@ export const List = styled.ul`
 `
 
 export const Paragraph = styled.p`
-  margin-bottom: 2rem;
+  ${({theme}) => theme.media.medium`
+    text-align: justify;
+  `}
 `
 
 export const DescriptionContent = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${({theme}) => theme.media.medium`
+    grid-column: 1/3;
+  `}
 `
 export const Link = styled(GhostButton)`
   font-size: 1.4rem;
@@ -75,7 +81,8 @@ export const Link = styled(GhostButton)`
 `
 
 export const LinksContainer = styled.div`
-  margin-top: auto;
+  grid-column: 1/3;
+  grid-row: 3/4;
 `
 
 export const Gallery = styled.div`
@@ -145,8 +152,7 @@ export const MoveIconContainer = styled.div`
   position: relative;
 `
 
-export const MoveIconLeft = styled(MoveIcon)`
-`
+export const MoveIconLeft = styled(MoveIcon)``
 
 export const MoveIconRight = styled(MoveIcon)`
   & svg {

@@ -6,8 +6,9 @@ export default AboutMe => styled(AboutMe)`
   display: flex;
   justify-content: space-between;
   display: flex;
-  ${({ theme }) => `
-    padding: 0 ${theme.verticalPadding};
+  padding: 0 var(--vertical-padding);
+  ${({theme}) => theme.media.medium`
+    flex-direction: column;
   `}
 `
 
@@ -28,16 +29,30 @@ export const AboutMeTitle = styled(Title)`
 
 export const ImageContainer = styled.div`
   flex: 1;
-  margin-right: 10rem;
+  margin-right: var(--vertical-padding);
   height: 70rem;
   display: flex;
   justify-content: space-between;
+  ${({theme}) => theme.media.medium`
+    justify-content: center;
+    order: 2;
+    margin-right: 0;
+    margin-top: 5rem;
+  `}
 `
 
 const Image = styled.div`
-  width: calc(50% - 2.5rem);
+  width: calc(50% - (var(--vertical-padding-small) / 2));
   height: calc(100% - 10rem);
   max-width: 30rem;
+
+  ${({theme}) => theme.media.medium`
+    width: initial;
+    flex: 1;
+    &:not(:last-child){
+      margin-right: var(--vertical-padding);
+    }
+  `}
 `
 export const FirstImageContainer = styled(Image)`
   margin-top: 10rem;

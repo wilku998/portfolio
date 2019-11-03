@@ -1,8 +1,8 @@
 import { css } from "styled-components"
 
 const sizes = {
-  big: 71.25, //1140
-  medium: 62.5, //1000
+  big: 80, //1280
+  medium: 53.125, //850
 }
 
 let media = {}

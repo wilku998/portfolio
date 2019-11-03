@@ -3,6 +3,16 @@ import { createGlobalStyle } from "styled-components"
 export default createGlobalStyle`
     @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,600&display=swap");
     @import url("https://fonts.googleapis.com/css?family=Ubuntu:400,500&display=swap");
+
+    :root{
+        --vertical-padding: 10rem;
+        --vertical-padding-small: 5rem;
+        ${({ theme }) => theme.media.big`
+            --vertical-padding: 5rem;
+            --vertical-padding-small: 2.5rem;
+        `}
+    }
+
     * {
         box-sizing: border-box;
         margin: 0;
@@ -17,7 +27,7 @@ export default createGlobalStyle`
     }
     html {
         font-size: 62.5%;
-        ${({theme}) => theme.media.big`
+        ${({ theme }) => theme.media.big`
             font-size: 50%;
         `}
     }

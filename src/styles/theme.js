@@ -9,5 +9,4 @@ export default {
   navigationHeight: "5rem",
   backgroundBlockWidth: "35rem",
   footerHeight: "55rem",
-  verticalPadding: '10rem'
 }

@@ -9,19 +9,28 @@ export default Footer => styled(Footer)`
   font-size: 1.2rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr) 2fr;
-  grid-gap: 2rem 6rem;
+  grid-gap: 2rem var(--vertical-padding-small);
   grid-template-rows: repeat(2, max-content) 1fr max-content;
-  max-height: 90vh;
+  padding: 7rem var(--vertical-padding) 2rem var(--vertical-padding);
+
   ${({ theme }) => `
-    background-color: ${theme.colorGrey3};
     height: ${theme.footerHeight};
-    padding: 7rem ${theme.verticalPadding} 3rem ${theme.verticalPadding};
+    background-color: ${theme.colorGrey3};
+  `}
+
+  ${({theme}) => theme.media.medium`
+    display: flex;
+    flex-direction: column;
   `}
 `
 
 export const PrivacyPolicy = styled.span`
   grid-row: 4/5;
   grid-column: 2/3;
+  ${({theme}) => theme.media.medium`
+    margin-top: auto;
+    margin-bottom: .5rem;
+  `}
 `
 
 export const PhotosCredit = styled.span`
@@ -29,11 +38,14 @@ export const PhotosCredit = styled.span`
   grid-column: 1/2;
 `
 
-export const Item = styled.div`
+const Item = styled.div`
   font-size: 1.4rem;
   padding-top: 1rem;
   ${({ theme }) => `
     border-top: 1px solid ${theme.colorGrey4};
+  `}
+  ${({theme}) => theme.media.medium`
+    margin-top: 1rem;
   `}
 `
 export const ItemTitle = styled.div`
@@ -62,6 +74,10 @@ export const Contact = styled.div`
   align-self: center;
   justify-self: center;
   text-align: center;
+
+  ${({theme}) => theme.media.medium`
+    display: none;
+  `}
 `
 
 export const ContactTitle = styled.h2`

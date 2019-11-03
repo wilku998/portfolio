@@ -34,26 +34,6 @@ const Footer = React.forwardRef(({ className, lang }, ref) => (
       </ItemTitle>
       <span>+48 570 706 596</span>
     </Telephone>
-    <PhotosCredit>
-      {chooseLang(
-        {
-          pl:
-            "Wszystkie fotografie, poza zdjęciami projektów oraz tym przedstawiającym mnie zostały pobrane ze strony unsplash.com",
-          en:
-            "All photos except projects images and photo of myself are downloaded from site unsplash.com",
-        },
-        lang
-      )}
-    </PhotosCredit>
-    <PrivacyPolicy>
-      {chooseLang(
-        {
-          pl: "2019 Wszystkie prawa zastrzeżone",
-          en: "2019 All rights reserved",
-        },
-        lang
-      )}
-    </PrivacyPolicy>
     <Contact>
       <ContactTitle>
         {chooseLang(
@@ -74,6 +54,26 @@ const Footer = React.forwardRef(({ className, lang }, ref) => (
         )}
       </ContactLink>
     </Contact>
+    <PrivacyPolicy>
+      {chooseLang(
+        {
+          pl: "2019 Wszystkie prawa zastrzeżone",
+          en: "2019 All rights reserved",
+        },
+        lang
+      )}
+    </PrivacyPolicy>
+    <PhotosCredit>
+      {chooseLang(
+        {
+          pl:
+            "Wszystkie fotografie, poza zdjęciami projektów oraz tym przedstawiającym mnie zostały pobrane ze strony unsplash.com",
+          en:
+            "All photos except projects images and photo of myself are downloaded from site unsplash.com",
+        },
+        lang
+      )}
+    </PhotosCredit>
   </footer>
 ))
 

@@ -84,7 +84,7 @@ const Header = ({ className, smoothScroll, lang }) => {
         </Title>
         <ShortBioContainer>
           <BioTitle>
-            {chooseLang({ pl: "Poznaj mnie", en: "About me" }, lang)}
+            {chooseLang({ pl: "O mnie", en: "About me" }, lang)}
           </BioTitle>
           <ShortBio>
             {chooseLang(

@@ -45,14 +45,6 @@ const Project = React.forwardRef(
           <DescriptionContent>
             <DescriptionTitle>{textContent.descriptionTitle}</DescriptionTitle>
             <Paragraph>{description}</Paragraph>
-            <LinksContainer>
-              <Link as="a" href={liveUrl} target="_blank">
-                {textContent.linkLive}
-              </Link>
-              <Link as="a" href={githubUrl} target="_blank">
-                {textContent.linkCode}
-              </Link>
-            </LinksContainer>
           </DescriptionContent>
           <Technologies>
             <DescriptionTitle>{textContent.technologiesTitle}</DescriptionTitle>
@@ -62,6 +54,14 @@ const Project = React.forwardRef(
               ))}
             </List>
           </Technologies>
+          <LinksContainer>
+            <Link as="a" href={liveUrl} target="_blank">
+              {textContent.linkLive}
+            </Link>
+            <Link as="a" href={githubUrl} target="_blank">
+              {textContent.linkCode}
+            </Link>
+          </LinksContainer>
         </Description>
 
         <Gallery>

@@ -11,37 +11,37 @@ const Item = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: repeat(3, max-content) 1fr;
-  grid-gap: 0 5rem;
+  grid-gap: 0 var(--vertical-padding-small);
   &:not(:last-child) {
     margin-bottom: 20rem;
   }
+  ${({theme}) => theme.media.medium`
+    grid-template-columns: repeat(2, 1fr);
+  `}
 `
 
 export const OddItem = styled(Item)`
-  ${({ theme }) => `
-    padding-left: ${theme.verticalPadding};
-  `}
+  padding-left: var(--vertical-padding);
 `
 
 export const EvenItem = styled(Item)`
   text-align: right;
-  ${({ theme }) => `
-    padding-right: ${theme.verticalPadding};
-  `}
+  padding-right: var(--vertical-padding);
 `
 
 export const SkillsTitle = styled.h2`
   grid-column: 1/3;
   text-align: center;
-  font-size: 6rem;
+  font-size: 5rem;
   margin-bottom: 5rem;
-  ${({ theme }) => `
-    padding: 0 ${theme.verticalPadding};
-  `}
+  padding: 0 var(--vertical-padding);
 `
 
 const oddItem = css`
   grid-column: 3/4;
+  ${({theme}) => theme.media.medium`
+    grid-column: 2/3;
+  `}
 `
 
 const evenItem = css`
@@ -51,11 +51,17 @@ const evenItem = css`
 export const OddItemImage = styled.div`
   grid-row: 1/4;
   grid-column: 2/4;
+  ${({theme}) => theme.media.medium`
+    grid-column: 2/3;
+  `}
 `
 
 export const EvenItemImage = styled.div`
   grid-row: 1/4;
   grid-column: 1/3;
+  ${({theme}) => theme.media.medium`
+    grid-column: 1/2;
+  `}
 `
 
 export const ItemContent = styled.div`

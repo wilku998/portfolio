@@ -8,8 +8,8 @@ import { fullSizeAbsolute } from "../styles/mixins"
 import chooseLang from "../functions/chooseLang"
 
 const Main = styled.main`
-  height: 100vh;
-  padding: 10rem;
+  min-height: 100vh;
+  padding: 10rem var(--vertical-padding);
   display: flex;
   align-items: center;
   position: relative;
@@ -41,6 +41,10 @@ const Circle = styled.div`
   transform: translate(40%, 40%);
   ${({ theme }) => `
     background-color: ${theme.colorGrey3};
+  `}
+  ${({theme}) => theme.media.big`
+    width: 35rem;
+    height: 35rem;
   `}
   &:after {
     content: "";
