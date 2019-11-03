@@ -6,15 +6,16 @@ export default Footer => styled(Footer)`
   bottom: 0;
   left: 0%;
   width: 100%;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr) 2fr;
   grid-gap: 2rem 6rem;
   grid-template-rows: repeat(2, max-content) 1fr max-content;
+  max-height: 90vh;
   ${({ theme }) => `
     background-color: ${theme.colorGrey3};
-    min-height: ${theme.footerHeight};
-    padding: 10rem ${theme.verticalPadding} 3rem ${theme.verticalPadding};
+    height: ${theme.footerHeight};
+    padding: 7rem ${theme.verticalPadding} 3rem ${theme.verticalPadding};
   `}
 `
 
@@ -29,13 +30,13 @@ export const PhotosCredit = styled.span`
 `
 
 export const Item = styled.div`
+  font-size: 1.4rem;
   padding-top: 1rem;
   ${({ theme }) => `
     border-top: 1px solid ${theme.colorGrey4};
   `}
 `
 export const ItemTitle = styled.div`
-  font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.3rem;
 `
@@ -66,7 +67,7 @@ export const Contact = styled.div`
 export const ContactTitle = styled.h2`
   font-size: 3rem;
   font-weight: 400;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   ${({ theme }) => `
       color: ${theme.colorGrey5};
     `}

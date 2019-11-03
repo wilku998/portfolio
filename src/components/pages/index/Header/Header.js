@@ -8,6 +8,7 @@ import style, {
   HeaderImageContainer,
   ImageTitle,
   HeaderImage,
+  ShortBioContainer,
 } from "./headerStyles"
 import Image from "../../../abstracts/Image"
 import RotatedTitle from "../../../abstracts/RotatedTitle"
@@ -77,12 +78,11 @@ const Header = ({ className, smoothScroll, lang }) => {
 
   return (
     <header className={className}>
-      <Content>
         <Title>
           Bartosz Wilk
           <SubTitle>Junior frontend developer</SubTitle>
         </Title>
-        <div>
+        <ShortBioContainer>
           <BioTitle>
             {chooseLang({ pl: "Poznaj mnie", en: "About me" }, lang)}
           </BioTitle>
@@ -95,8 +95,7 @@ const Header = ({ className, smoothScroll, lang }) => {
               lang
             )}
           </ShortBio>
-        </div>
-      </Content>
+        </ShortBioContainer>
       <HeaderImageContainer ref={imageContainerRef}>
         {/*Photo by Mike Ko on Unsplash*/}
         <HeaderImage ref={imageRef}>

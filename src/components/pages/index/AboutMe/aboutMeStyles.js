@@ -12,7 +12,7 @@ export default AboutMe => styled(AboutMe)`
 `
 
 export const Content = styled.div`
-  flex: 0 0 60rem;
+  flex: 0 1 50%;
 `
 
 export const Paragraph = styled.p`

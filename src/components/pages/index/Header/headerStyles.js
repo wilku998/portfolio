@@ -3,18 +3,27 @@ import { centerAbsolute, fullSizeAbsolute } from "../../../../styles/mixins"
 
 export default Header => styled(Header)`
   width: 100%;
-  height: 100vh;
   position: relative;
-  display: flex;
+  display: grid;
+  padding: 0 5rem 2rem 5rem;
+  height: 100vh;
+  min-height: 60rem;
+  grid-template-columns: 30rem 1fr 30rem;
+  grid-template-rows: 1fr 30rem 1fr;
 `
 export const HeaderImageContainer = styled.div`
-  ${centerAbsolute}
+  height: 100%;
+  width: 30rem;
+  grid-row: 2/3;
+  grid-column: 2/3;
+  align-self: center;
+  justify-self: center;
   perspective: 15px;
 `
 
 export const HeaderImage = styled.div`
-  height: 30rem;
-  width: 30rem;
+  height: 100%;
+  width: 100%;
   flex: 1;
   border-radius: 0.3rem;
   overflow: hidden;
@@ -30,18 +39,6 @@ export const ImageTitle = styled.h2`
   ${({ theme }) => `
     color: ${theme.colorGrey2};
   `}
-`
-export const Content = styled.div`
-  padding: 0 5rem 4rem 5rem;
-  flex: 0 1 40rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  /* background: rgba(0, 0, 0, .25); */
-  & > * {
-    position: relative;
-    z-index: 10;
-  }
 `
 
 export const ShortBio = styled.p`
@@ -61,7 +58,6 @@ const showTitle = keyframes`
     opacity: 0;
     transform: translateY(-5rem);
   }
-
   100%{
     opacity: 1;
     transform: translateY(0);
@@ -69,12 +65,22 @@ const showTitle = keyframes`
 `
 
 export const Title = styled.h1`
+  grid-column: 1/2;
+  grid-row: 2/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   font-size: 4rem;
-  margin-top: 20vw;
   line-height: 1;
   animation: ${showTitle} 1s 2s both;
 `
 
 export const SubTitle = styled.div`
   font-size: 1.4rem;
+`
+
+export const ShortBioContainer = styled.div`
+  grid-column: 1/2;
+  grid-row: 3/4;
+  align-self: end;
 `

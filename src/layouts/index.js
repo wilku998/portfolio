@@ -5,6 +5,7 @@ import Navigation from "../components/Navigation/Navigation"
 import GlobalStyleComponent from "../styles/GlobalStyleComponent"
 import Footer from "../components/Footer/Footer"
 import { SmoothScroll } from "../smoothScroll/SmoothScroll"
+import media from "../styles/media"
 
 const Container = styled.div`
   position: relative;
@@ -16,7 +17,6 @@ const Scrollable = styled.div`
   will-change: transform;
   position: fixed;
   z-index: 10;
-  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -41,11 +41,11 @@ export default ({ children }) => {
     )
   }, [])
 
-  const langObj = { setLang, lang };
+  const langObj = { setLang, lang }
   return (
     <Context.Provider value={{ smoothScroll, lang: langObj }}>
       <div ref={body}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={{ ...theme, media }}>
           <GlobalStyleComponent />
           <Navigation lang={langObj} />
           <Scrollable ref={scrollable}>

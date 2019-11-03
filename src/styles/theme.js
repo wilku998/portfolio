@@ -6,8 +6,8 @@ export default {
   colorGrey4: "#606060",
   colorGrey5: "#2E2E2E", //big fonts
   colorGrey6: "#1A1A1A", //regular text
-  navigationWidth: "5rem",
+  navigationHeight: "5rem",
   backgroundBlockWidth: "35rem",
-  footerHeight: "60rem",
+  footerHeight: "55rem",
   verticalPadding: '10rem'
 }

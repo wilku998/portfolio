@@ -13,8 +13,9 @@ export default Navigation => styled(Navigation)`
   align-items: center;
   line-height: 1;
   font-size: 1.4rem;
+  padding: 0 5rem;
   ${({ theme }) => `
-    padding: 1rem 5rem;
+    height: ${theme.navigationHeight};
   `}
 
   &:after {

@@ -17,6 +17,9 @@ export default createGlobalStyle`
     }
     html {
         font-size: 62.5%;
+        ${({theme}) => theme.media.big`
+            font-size: 50%;
+        `}
     }
 
     body {
@@ -27,7 +30,7 @@ export default createGlobalStyle`
         overflow-x: hidden;
         ${({ theme }) => `
           color: ${theme.colorGrey6};
-          padding-bottom: ${theme.footerHeight};
+          padding: 0 0 ${theme.footerHeight} 0;
           background-color: ${theme.colorGrey2};
         `}
     }
