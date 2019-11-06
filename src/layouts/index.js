@@ -28,16 +28,6 @@ const Scrollable = styled.div`
   }
 `
 
-const Test = styled.div`
-  position: fixed;
-  bottom: 0;
-  left: 0%;
-  height: var(--body-padding);
-  width: 100%;
-  background-color: white;
-  z-index: 100;
-`
-
 export const Context = createContext()
 
 export default ({ children }) => {
@@ -64,7 +54,6 @@ export default ({ children }) => {
           </Scrollable>
           <Footer lang={langObj} ref={footer} />
         </ThemeProvider>
-        {/* <Test /> */}
       </div>
     </Context.Provider>
   )

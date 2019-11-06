@@ -93,7 +93,8 @@ export default createGlobalStyle`
       `}
     }
 
-    input, textarea {
+    input, textarea, select {
+        font-family: inherit;
         &:focus{
             outline: none;
         }

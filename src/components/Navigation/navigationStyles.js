@@ -1,6 +1,5 @@
 import styled from "styled-components"
-import { Link } from "gatsby"
-import { afterWhiteBlock, fullSizeAbsolute } from "../../styles/mixins"
+import { afterWhiteBlock } from "../../styles/mixins"
 
 export default Navigation => styled(Navigation)`
   position: fixed;

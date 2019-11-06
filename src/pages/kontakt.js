@@ -2,7 +2,6 @@ import React, { useLayoutEffect } from "react"
 import styled from "styled-components"
 import Form from "../components/pages/kontakt/Form/Form"
 import { Context } from "../layouts"
-import chooseLang from "../functions/chooseLang"
 import useScrollReset from "../hooks/useScrollReset"
 
 const Main = styled.main`

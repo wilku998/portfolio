@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from "react"
+import React from "react"
 import style, { Title, SubTitle, MainTitle } from "./headerStyles"
 
 const Header = ({ className }) => {

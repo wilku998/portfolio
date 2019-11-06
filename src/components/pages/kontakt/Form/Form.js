@@ -30,8 +30,8 @@ const Form = ({ className, lang }) => {
         setInfo(
           `${name} ${chooseLang(
             {
-              en: "have to contain more than 5 chars and less than 31.",
-              pl: "musi posiadać conajmniej 5 znaków oraz mniej niż 31.",
+              en: `have to contain more than 5 chars and less than ${limit}.`,
+              pl: `musi posiadać conajmniej 5 znaków oraz mniej niż ${limit}.`,
             },
             lang
           )}`
@@ -73,7 +73,7 @@ const Form = ({ className, lang }) => {
         case "message":
           stringValidation(
             length,
-            500,
+            1000,
             chooseLang(
               {
                 en: "Message",
@@ -82,6 +82,8 @@ const Form = ({ className, lang }) => {
               lang
             )
           )
+          break
+        default:
           break
       }
     })
@@ -174,7 +176,7 @@ const Form = ({ className, lang }) => {
         <Input
           as="textarea"
           rows="10"
-          maxlength="500"
+          maxlength="1000"
           name="message"
           onChange={onFormChange}
           value={message}

@@ -4,7 +4,6 @@ import Image from "../../../abstracts/Image"
 import Title from "../../../abstracts/Title"
 
 const Skills = ({ className, smoothScroll, skills }) => {
-  const [frontend, backend] = skills
   return (
     <section className={className}>
       <Content>

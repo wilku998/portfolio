@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components"
 import GhostButton from "../../abstracts/GhostButton"
 import ReactSVG from "react-svg"
-import { fullSizeAbsolute, centerAbsolute } from "../../../styles/mixins"
+import { centerAbsolute } from "../../../styles/mixins"
 import Title from "../../abstracts/Title"
 
 export default Project => styled(Project)`
