@@ -1,18 +1,20 @@
 import mathUtils from "./mathUtils"
 
 export default class Item {
-  constructor(el, translate) {
-    this.DOM = { el: el, translate }
+  constructor({ el, maxValue, setTransform, ease }) {
+    this.DOM = { el: el }
     this.DOM.image = this.DOM.el.querySelector("div")
+    this.setTransform = setTransform
     this.renderedStyles = {
       innerTranslationY: {
         previous: 0,
         current: 0,
-        ease: translate === "translateX" ? 0.1 : 0.2,
-        maxValue: translate === "translateX" ? 100 : 50,
+        ease: ease || 0.2,
+        minValue: -1 * maxValue,
+        maxValue,
         setValue: () => {
           const maxValue = this.renderedStyles.innerTranslationY.maxValue
-          const minValue = -1 * maxValue
+          const minValue = this.renderedStyles.innerTranslationY.minValue
           return Math.max(
             Math.min(
               mathUtils.map(
@@ -73,9 +75,8 @@ export default class Item {
   }
   layout() {
     const previous = this.renderedStyles.innerTranslationY.previous
-    this.DOM[this.DOM.image ? "image" : "el"].style.transform =
-      this.DOM.translate === "translateX"
-        ? `translate3d(${previous}px,-${previous}px,0)`
-        : `translate3d(0,${previous}px,0)`
+    this.DOM[
+      this.DOM.image ? "image" : "el"
+    ].style.transform = this.DOM.translate = this.setTransform(previous)
   }
 }

@@ -11,12 +11,15 @@ import {
 import { Context } from "../layouts/index"
 import Project from "../components/pages/projekty/Project"
 import useLoadImages from "../hooks/useLoadImages"
-import useScrollReset from "../hooks/useScrollReset"
 import chooseLang from "../functions/chooseLang"
+import useScrollReset from "../hooks/useScrollReset"
 
 const Main = styled.main`
   overflow: hidden;
   padding-top: 10rem;
+  ${({ theme }) => `
+    background-color: ${theme.colorGrey1};
+  `}
 `
 
 const ProjectsContainer = styled.div`
@@ -26,12 +29,7 @@ const ProjectsContainer = styled.div`
 const Projects = ({ smoothScroll, lang }) => {
   const data = useStaticQuery(graphql`
     query {
-      allContentfulProject (
-        sort: {
-          fields: [createdAt]
-          order: ASC
-        }
-      ) {
+      allContentfulProject(sort: { fields: [createdAt], order: ASC }) {
         edges {
           node {
             descriptionPl {
@@ -72,6 +70,7 @@ const Projects = ({ smoothScroll, lang }) => {
   const images = []
   projectsData.forEach(project => project.images.forEach(e => images.push(e)))
   const imagesLoaded = useLoadImages(images)
+  useScrollReset(smoothScroll)
   const [position, setPosition] = useState(0)
   const [translateX, setTranslateX] = useState(0)
   const selectedProject = useRef()
@@ -98,8 +97,6 @@ const Projects = ({ smoothScroll, lang }) => {
     smoothScroll.setSize()
   }
 
-  useScrollReset(smoothScroll)
-
   const onTouchListiner = (
     event,
     eventProperty,
@@ -121,6 +118,7 @@ const Projects = ({ smoothScroll, lang }) => {
   useLayoutEffect(() => {
     if (imagesLoaded) {
       setSize()
+
       const component = main.current
       let initialX = 0
 
@@ -167,6 +165,7 @@ const Projects = ({ smoothScroll, lang }) => {
     }
   }, [position, imagesLoaded, lang.lang])
 
+  
   return (
     <Main ref={main}>
       {imagesLoaded && (

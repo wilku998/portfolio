@@ -1,64 +1,28 @@
-import styled, { keyframes, css } from "styled-components"
-import { centerAbsolute, fullSizeAbsolute } from "../../../../styles/mixins"
+import styled, { keyframes } from "styled-components"
 
 export default Header => styled(Header)`
-  color: var(--color);
   width: 100%;
+  min-height: 50rem;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--vertical-padding);
   position: relative;
-  display: grid;
-  padding: 0 var(--vertical-padding-small) 2rem var(--vertical-padding-small);
-  height: 100vh;
-  min-height: 60rem;
-  grid-template-columns: 30rem 1fr 30rem;
-  grid-template-rows: 1fr 30rem 1fr;
-  ${({ theme }) => theme.media.medium`
-    // padding-top: 5rem;
-  `}
-`
-export const HeaderImageContainer = styled.div`
-  height: 100%;
-  width: 30rem;
-  grid-row: 2/3;
-  grid-column: 2/3;
-  align-self: center;
-  justify-self: center;
-  perspective: 15px;
 
-  ${({ theme }) => theme.media.medium`
-    display: none;
-  `}
-`
-
-export const HeaderImage = styled.div`
-  height: 100%;
-  width: 100%;
-  flex: 1;
-  border-radius: 0.3rem;
-  overflow: hidden;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
-  transition: all 0.5s;
-  will-change: transform;
-`
-
-export const ImageTitle = styled.h2`
-  ${centerAbsolute}
-  z-index: 10;
-  font-size: 1.6rem;
   ${({ theme }) => `
-    color: ${theme.colorGrey2};
+    height: calc(100vh - ${theme.navigationHeight});
   `}
-`
 
-export const ShortBio = styled.p`
-  font-size: 1.4rem;
-`
-
-export const BioTitle = styled.h3`
-  font-size: 1.6rem;
-  font-weight: 600;
-  ${({ theme }) => `
-    color: ${theme.colorGrey5};
-  `}
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 35%;
+    ${({ theme }) => `
+      background-color: rgb(${theme.colorGreyGreen});
+    `}
+  }
 `
 
 const showTitle = keyframes`
@@ -73,27 +37,29 @@ const showTitle = keyframes`
 `
 
 export const Title = styled.h1`
-  grid-column: 1/2;
-  grid-row: 2/3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 4rem;
+  position: relative;
+  z-index: 10;
+  font-size: 6rem;
   line-height: 1;
-  animation: ${showTitle} 1s 2s both;
-  /* ${({ theme }) => theme.media.medium`
-    font-size: 4rem;
-    grid-column: 1/2;
-    grid-row: 1/2;
-  `} */
 `
 
 export const SubTitle = styled.div`
-  font-size: 1.4rem;
+  animation: ${showTitle} 1s 0.5s both;
 `
 
-export const ShortBioContainer = styled.div`
-  grid-column: 1/2;
-  grid-row: 3/4;
-  align-self: end;
+export const MainTitle = styled.div`
+  animation: ${showTitle} 1s 0.75s both;
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: -1rem;
+    left: 0.3rem;
+    width: 2rem;
+    height: 3px;
+    ${({ theme }) => `
+      background-color: ${theme.colorGrey5};
+    `}
+  }
 `

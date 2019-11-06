@@ -1,62 +1,29 @@
-import React, { useRef, useLayoutEffect } from "react"
-import style, {
-  OddItemImage,
-  EvenItemImage,
-  OddItemTitle,
-  OddItemList,
-  OddItemDesc,
-  EvenItemTitle,
-  EvenItemList,
-  EvenItemDesc,
-  EvenItem,
-  OddItem,
-  SkillsTitle,
-} from "./styleSkills"
+import React from "react"
+import style, { Content, Item, Desc, ListItem } from "./styleSkills"
 import Image from "../../../abstracts/Image"
-import chooseLang from "../../../../functions/chooseLang"
+import Title from "../../../abstracts/Title"
 
-const Skills = ({ className, smoothScroll, skills, lang }) => {
-  const isEven = n => n % 2 === 0
-
+const Skills = ({ className, smoothScroll, skills }) => {
+  const [frontend, backend] = skills
   return (
-    <div className={className}>
-      <SkillsTitle>
-        {chooseLang({ pl: "Umiejętności", en: "Skills" }, lang)}
-      </SkillsTitle>
-      {skills.map(({ title, description, image, technologies }, i) =>
-        isEven(i + 1) ? (
-          <EvenItem key={title}>
-            <EvenItemTitle>
-              <span>{title}</span>
-            </EvenItemTitle>
-            <EvenItemDesc>{description}</EvenItemDesc>
-            <EvenItemList>
-              {technologies.map(e => (
-                <li key={e}>{e}</li>
+    <section className={className}>
+      <Content>
+        {skills.map(skill => (
+          <Item key={skill.title}>
+            <Title>
+              <span>{skill.title}</span>
+            </Title>
+            <Desc>{skill.description}</Desc>
+            <ul>
+              {skill.technologies.map(e => (
+                <ListItem key={e}>{e}</ListItem>
               ))}
-            </EvenItemList>
-            <EvenItemImage>
-              <Image smoothScroll={smoothScroll} src={image} />
-            </EvenItemImage>
-          </EvenItem>
-        ) : (
-          <OddItem key={title}>
-            <OddItemImage>
-              <Image smoothScroll={smoothScroll} src={image} />
-            </OddItemImage>
-            <OddItemTitle>
-              <span>{title}</span>
-            </OddItemTitle>
-            <OddItemDesc>{description}</OddItemDesc>
-            <OddItemList>
-              {technologies.map(e => (
-                <li key={e}>{e}</li>
-              ))}
-            </OddItemList>
-          </OddItem>
-        )
-      )}
-    </div>
+            </ul>
+          </Item>
+        ))}
+      </Content>
+      <Image smoothScroll={smoothScroll} src="/images/front-cropped.png" />
+    </section>
   )
 }
 

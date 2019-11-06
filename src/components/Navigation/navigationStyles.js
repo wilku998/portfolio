@@ -6,36 +6,23 @@ export default Navigation => styled(Navigation)`
   position: fixed;
   z-index: 20;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: var(--body-padding);
+  width: calc(100% - (2 * var(--body-padding)));
   display: flex;
   justify-content: space-between;
   align-items: center;
   line-height: 1;
-  font-size: 1.4rem;
-  padding: 0 5rem;
+  font-size: 1.3rem;
+  padding: 0 var(--vertical-padding-small);
   ${({ theme }) => `
     height: ${theme.navigationHeight};
+    background: ${theme.colorGrey1};
   `}
-
-  &:after {
-    z-index: -1;
-    content: "";
-    ${fullSizeAbsolute}
-    opacity: 0.5;
-    ${({ theme }) => `
-      background: ${theme.colorGrey2};
-      box-shadow: 0 1px 1px ${theme.colorGrey2};
-    `}
-  }
 `
 
 export const Side = styled.div`
   display: flex;
   align-items: center;
-  &:not(:first-child) {
-    margin-left: 8rem;
-  }
 `
 
 const NavItem = styled.div`
@@ -64,6 +51,15 @@ const NavItem = styled.div`
 export const NavLink = styled(NavItem)`
   &:not(:first-child) {
     margin-left: 4rem;
+
+    ${({ theme }) => theme.media.small`
+      margin-left: 1rem;
+    `}
+  }
+  &:after {
+    ${({ theme }) => `
+      background-color: rgba(${theme.colorGreyGreen});
+    `}
   }
 `
 
@@ -71,11 +67,14 @@ export const NavButton = styled(NavItem)`
   text-transform: uppercase;
   &:not(:first-child) {
     margin-left: 2rem;
+    ${({ theme }) => theme.media.small`
+      margin-left: 1rem;
+    `}
   }
 
   &:after {
     ${({ theme }) => `
-      background-color: #b4e1c4;
+      background-color: ${theme.colorGrey3_4};
     `}
   }
   ${({ isSelected }) =>

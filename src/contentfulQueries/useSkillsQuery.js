@@ -15,11 +15,6 @@ export default lang => {
             }
             technologies
             title
-            image {
-              fluid {
-                src
-              }
-            }
           }
         }
       }
@@ -34,7 +29,6 @@ export default lang => {
         en: node.descriptionEn.descriptionEn,
       },
       lang
-    ),
-    image: node.image.fluid.src,
+    )
   }))
 }

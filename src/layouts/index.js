@@ -10,21 +10,32 @@ import media from "../styles/media"
 const Container = styled.div`
   position: relative;
   z-index: 10;
-  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.05);
 `
 
 const Scrollable = styled.div`
   will-change: transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
   position: fixed;
   z-index: 10;
   left: 0;
   width: 100%;
   height: 100%;
-
+  padding: 0 var(--body-padding);
   & > * {
     position: relative;
     z-index: 10;
   }
+`
+
+const Test = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0%;
+  height: var(--body-padding);
+  width: 100%;
+  background-color: white;
+  z-index: 100;
 `
 
 export const Context = createContext()
@@ -53,6 +64,7 @@ export default ({ children }) => {
           </Scrollable>
           <Footer lang={langObj} ref={footer} />
         </ThemeProvider>
+        {/* <Test /> */}
       </div>
     </Context.Provider>
   )

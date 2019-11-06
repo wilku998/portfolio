@@ -3,13 +3,22 @@ import { createGlobalStyle } from "styled-components"
 export default createGlobalStyle`
     @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,600&display=swap");
     @import url("https://fonts.googleapis.com/css?family=Ubuntu:400,500&display=swap");
+    @import url("https://fonts.googleapis.com/css?family=Merriweather&display=swap");
 
+    ::-webkit-scrollbar{
+        display: none;
+    }
     :root{
         --vertical-padding: 10rem;
         --vertical-padding-small: 5rem;
+        --body-padding: 2rem;
         ${({ theme }) => theme.media.big`
             --vertical-padding: 5rem;
             --vertical-padding-small: 2.5rem;
+        `}
+        ${({ theme }) => theme.media.small`
+            --vertical-padding: 2.5rem;
+            --body-padding: 0rem;
         `}
     }
 
@@ -41,7 +50,7 @@ export default createGlobalStyle`
         ${({ theme }) => `
           color: ${theme.colorGrey6};
           padding: 0 0 ${theme.footerHeight} 0;
-          background-color: ${theme.colorGrey2};
+          background-color: ${theme.colorGrey1};
         `}
     }
 
@@ -78,6 +87,7 @@ export default createGlobalStyle`
     }
 
     main{
+       min-height: 100vh;
        ${({ theme }) => `
         background: ${theme.colorGrey2}
       `}

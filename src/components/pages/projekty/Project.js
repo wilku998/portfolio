@@ -6,7 +6,7 @@ import style, {
   Technologies,
   List,
   Link,
-  DescriptionContent,
+  Content,
   LinksContainer,
   Paragraph,
   Image,
@@ -17,7 +17,6 @@ import chooseLang from "../../../functions/chooseLang"
 const Project = React.forwardRef(
   ({ project, className, style, isSelected, lang }, ref) => {
     const { images, description, technologies, liveUrl, githubUrl } = project
-    console.log(project)
     const textContent = chooseLang(
       {
         pl: {
@@ -41,11 +40,19 @@ const Project = React.forwardRef(
         className={className}
         style={style}
       >
-        <Description>
-          <DescriptionContent>
+        <Content>
+          <Description>
             <DescriptionTitle>{textContent.descriptionTitle}</DescriptionTitle>
             <Paragraph>{description}</Paragraph>
-          </DescriptionContent>
+            <LinksContainer>
+              <Link as="a" href={liveUrl} target="_blank">
+                {textContent.linkLive}
+              </Link>
+              <Link as="a" href={githubUrl} target="_blank">
+                {textContent.linkCode}
+              </Link>
+            </LinksContainer>
+          </Description>
           <Technologies>
             <DescriptionTitle>{textContent.technologiesTitle}</DescriptionTitle>
             <List>
@@ -54,15 +61,7 @@ const Project = React.forwardRef(
               ))}
             </List>
           </Technologies>
-          <LinksContainer>
-            <Link as="a" href={liveUrl} target="_blank">
-              {textContent.linkLive}
-            </Link>
-            <Link as="a" href={githubUrl} target="_blank">
-              {textContent.linkCode}
-            </Link>
-          </LinksContainer>
-        </Description>
+        </Content>
 
         <Gallery>
           <FakeImage src={images[0]} />

@@ -3,7 +3,6 @@ import mathUtils from "./mathUtils"
 
 export class SmoothScroll {
   constructor(body, scrollable, footer) {
-    this.reset = false;
     this.DOM = { body, scrollable, footer }
     this.callbacks = []
     this.items = []
@@ -25,8 +24,8 @@ export class SmoothScroll {
     this.callbacks = [...this.callbacks, callback]
   }
 
-  addItem(item, translate) {
-    this.items.push(new Item(item, translate))
+  addItem(item) {
+    this.items.push(new Item(item))
   }
 
   update() {
@@ -39,13 +38,8 @@ export class SmoothScroll {
   }
 
   resetRequest(){
-    this.DOM.footer.style.opacity = 0;
-    this.reset = true;
     window.scrollTo(0,0)
-    setTimeout(() => {
-      this.reset = false;
-      this.DOM.footer.style.opacity = 1;
-    }, 100)
+    this.update()
   }
 
   layout() {
@@ -61,12 +55,12 @@ export class SmoothScroll {
   }
   render() {
     for (const key in this.renderedStyles) {
-      this.renderedStyles[key].current = !this.reset ? this.renderedStyles[key].setValue() : 0;
-      this.renderedStyles[key].previous =  !this.reset ? mathUtils.lerp(
+      this.renderedStyles[key].current = this.renderedStyles[key].setValue();
+      this.renderedStyles[key].previous =  mathUtils.lerp(
         this.renderedStyles[key].previous,
         this.renderedStyles[key].current,
         this.renderedStyles[key].ease
-      ) : 0
+      )
     }
     this.layout();
 

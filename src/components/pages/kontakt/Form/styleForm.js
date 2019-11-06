@@ -5,6 +5,8 @@ export default Form => styled(Form)`
   display: flex;
   flex-direction: column;
   flex: 0 1 100rem;
+  position: relative;
+  z-index: 100 !important;
 `
 
 export const Label = styled.label`
@@ -12,7 +14,7 @@ export const Label = styled.label`
   flex-direction: column;
   & > span {
     font-weight: 600;
-    padding: 0.3rem 0;
+    padding: 0.5rem 0;
     text-transform: uppercase;
     ${({ theme }) => `
         color: ${theme.colorGrey4};
@@ -21,8 +23,8 @@ export const Label = styled.label`
 `
 
 export const Input = styled.input`
-  padding: 0.75rem 1rem;
-  font-size: 1.6rem !important;
+  padding: 1rem;
+  font-size: 1.4rem !important;
   background: none;
   border-left: none;
   border-right: none;
@@ -35,6 +37,7 @@ export const Input = styled.input`
 export const Button = styled(GhostButton)`
   align-self: start;
   margin-top: 2rem;
+  font-size: 1.4rem;
 `
 
 export const Info = styled.span`

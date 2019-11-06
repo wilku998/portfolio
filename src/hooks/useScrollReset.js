@@ -1,8 +1,7 @@
-import { useEffect } from "react"
+import { useLayoutEffect } from "react"
 
 export default smoothScroll => {
-  useEffect(() => {
+  useLayoutEffect(() => {
     smoothScroll.resetRequest()
-    return () => (smoothScroll.DOM.footer.style.opacity = 0)
   }, [])
 }

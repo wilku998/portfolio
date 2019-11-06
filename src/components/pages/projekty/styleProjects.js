@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import GhostButton from "../../abstracts/GhostButton"
 import ReactSVG from "react-svg"
 import { fullSizeAbsolute, centerAbsolute } from "../../../styles/mixins"
@@ -12,6 +12,7 @@ export default Project => styled(Project)`
   flex-direction: column;
   transition: all 0.5s ease-in-out;
   padding: 0 var(--vertical-padding) 30rem var(--vertical-padding);
+  font-size: 1.4rem;
 `
 
 export const TitleContainer = styled.div`
@@ -20,17 +21,27 @@ export const TitleContainer = styled.div`
 `
 
 export const ProjectTitle = styled(Title)`
-  font-size: 4rem;
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.6;
+  &:after {
+    ${({ theme }) => `
+      background-color: ${theme.colorGrey2};
+    `}
+  }
 `
 
-export const Description = styled.div`
+export const Content = styled.div`
   padding: 2.5rem 2.5rem 0 2.5rem;
   display: grid;
   grid-gap: 2rem 4rem;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr;
   ${({ theme }) => `
-    border-top: 1px solid ${theme.colorGrey4};
+    border-top: 1px solid ${theme.colorGrey3_4};
+  `}
+  ${({ theme }) => theme.media.small`
+    padding: 2.5rem 0 0 0;
   `}
 `
 
@@ -38,7 +49,7 @@ export const DescriptionTitle = styled.h3`
   text-transform: uppercase;
   font-weight: 600;
   font-size: 1.6rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.4rem;
   letter-spacing: 0.2rem;
 `
 
@@ -46,7 +57,7 @@ export const Technologies = styled.div`
   justify-self: end;
   text-align: center;
   grid-column: 2/3;
-  ${({theme}) => theme.media.medium`
+  ${({ theme }) => theme.media.medium`
     grid-column: 1/3;
     grid-row: 2/3;
     justify-self: start;
@@ -57,19 +68,19 @@ export const Technologies = styled.div`
 export const List = styled.ul`
   & > li {
     &:not(:last-child) {
-      margin-bottom: 0.3rem;
+      margin-bottom: 1rem;
     }
   }
 `
 
 export const Paragraph = styled.p`
-  ${({theme}) => theme.media.medium`
+  ${({ theme }) => theme.media.medium`
     text-align: justify;
   `}
 `
 
-export const DescriptionContent = styled.div`
-  ${({theme}) => theme.media.medium`
+export const Description = styled.div`
+  ${({ theme }) => theme.media.medium`
     grid-column: 1/3;
   `}
 `
@@ -81,8 +92,7 @@ export const Link = styled(GhostButton)`
 `
 
 export const LinksContainer = styled.div`
-  grid-column: 1/3;
-  grid-row: 3/4;
+  margin-top: 2rem;
 `
 
 export const Gallery = styled.div`
@@ -94,6 +104,31 @@ export const FakeImage = styled.img`
   height: auto;
   opacity: 0;
   visibility: hidden;
+  ${({ theme }) => theme.media.medium`
+    width: 200%;
+  `}
+  ${({ theme }) => theme.media.small`
+    display: none;
+  `}
+`
+
+const imageMobile = css`
+  ${({ theme }) => theme.media.small`
+    position: relative;
+    width: 100%;
+    top: initial;
+    left: initial;
+    transform: none;
+    box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.025);
+    
+    &:hover{
+      transform: none;
+    }
+
+    &:not(:last-child){
+      margin-bottom: 2rem;
+    }
+  `}
 `
 
 export const Image = styled.img`
@@ -101,14 +136,25 @@ export const Image = styled.img`
   height: auto;
   transform: scale(0.95);
   transition: all 0.2s;
-  box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.025);
+
+  ${({ theme }) => `
+    border: 1px solid ${theme.colorGrey1};
+  `}
+
   &:hover {
     transform: scale(1);
+    z-index: 10;
   }
+
   &:nth-child(2) {
     width: 60%;
     top: 0;
     left: 0%;
+    ${({ theme }) => theme.media.medium`
+      width: 90%;
+    `}
+    ${imageMobile}
   }
   &:nth-child(3) {
     width: 50%;
@@ -118,20 +164,21 @@ export const Image = styled.img`
     &:hover {
       transform: translateY(-50%) scale(1);
     }
+    ${({ theme }) => theme.media.medium`
+      top: 50%;
+      width: 70%;
+    `}
+    ${imageMobile}
   }
   &:nth-child(4) {
     width: 50%;
     bottom: 0;
     left: 5%;
+    ${({ theme }) => theme.media.medium`
+      width: 80%;
+    `}
+    ${imageMobile}
   }
-
-  &:hover {
-    z-index: 10;
-  }
-
-  ${({ theme }) => `
-    border: 3px solid ${theme.colorGrey1};
-  `}
 `
 
 export const MoveIcon = styled(ReactSVG)`
