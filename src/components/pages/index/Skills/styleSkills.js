@@ -1,7 +1,6 @@
 import styled from "styled-components"
 
 export default Skills => styled(Skills)`
-  margin-top: 30rem;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -16,7 +15,7 @@ export const Content = styled.div`
   z-index: 10;
   height: 100%;
   max-width: 110rem;
-  background: rgb(246, 246, 246, 0.5);
+  background: rgb(246, 246, 246, 0.6);
 
   display: flex;
   padding: 10rem var(--vertical-padding);

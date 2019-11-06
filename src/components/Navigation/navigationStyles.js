@@ -1,7 +1,7 @@
 import styled from "styled-components"
-import { afterWhiteBlock } from "../../styles/mixins"
+import { afterWhiteBlock, fullSizeAbsolute } from "../../styles/mixins"
 
-export default Navigation => styled(Navigation)`
+export const Nav = styled.nav`
   position: fixed;
   z-index: 20;
   top: 0;
@@ -13,10 +13,30 @@ export default Navigation => styled(Navigation)`
   line-height: 1;
   font-size: 1.3rem;
   padding: 0 var(--vertical-padding-small);
+
   ${({ theme }) => `
     height: ${theme.navigationHeight};
-    background: ${theme.colorGrey1};
   `}
+
+  &:after{
+    content: "";
+    transition: all .4s;
+    ${fullSizeAbsolute}
+    opacity: .5;
+    ${({ theme }) => `
+      background-color: ${theme.colorGrey1};
+    `}
+    ${({ backgroundVisible }) => backgroundVisible ? `
+      transform: translateY(0);
+    ` : `
+      transform: translateY(-100%);
+    `}
+  }
+
+  & > * {
+    position: relative;
+    z-index: 10;
+  }
 `
 
 export const Side = styled.div`
@@ -57,7 +77,7 @@ export const NavLink = styled(NavItem)`
   }
   &:after {
     ${({ theme }) => `
-      background-color: rgba(${theme.colorGreyGreen});
+      background-color: ${theme.colorBlue2};
     `}
   }
 `
@@ -73,7 +93,7 @@ export const NavButton = styled(NavItem)`
 
   &:after {
     ${({ theme }) => `
-      background-color: ${theme.colorGrey3_4};
+      background-color: ${theme.colorBlue1};
     `}
   }
   ${({ isSelected }) =>

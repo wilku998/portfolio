@@ -12,7 +12,7 @@ const Main = styled.main`
   position: relative;
   overflow: hidden;
   ${({ theme }) => `
-    background-color: ${theme.colorGrey1};
+    background-color: ${theme.colorGrey2};
   `}
   
   & > * {
@@ -26,7 +26,7 @@ const Main = styled.main`
     width: 20%;
     height: 70%;
     ${({ theme }) => `
-      background-color: rgb(${theme.colorGreyGreen});
+      background-color: ${theme.colorBlue1};
     `}
   }
 `

@@ -6,7 +6,7 @@ export default Footer => styled(Footer)`
   left: var(--body-padding);
   width: calc(100% - (var(--body-padding) * 2));
   display: flex;
-  padding: 4rem var(--vertical-padding) 2rem var(--vertical-padding);
+  padding: 5rem var(--vertical-padding) 2rem var(--vertical-padding);
   font-size: 1.4rem;
   max-height: 90vh;
 
@@ -24,7 +24,7 @@ export default Footer => styled(Footer)`
     position: absolute;
     top: 0;
     right: 0;
-    width: 35%;
+    width: 50%;
     height: 100%;
     ${({ theme }) => `
       background: ${theme.colorGrey3_4};

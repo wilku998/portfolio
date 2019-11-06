@@ -11,7 +11,7 @@ export default createGlobalStyle`
     :root{
         --vertical-padding: 10rem;
         --vertical-padding-small: 5rem;
-        --body-padding: 2rem;
+        --body-padding: 1rem;
         ${({ theme }) => theme.media.big`
             --vertical-padding: 5rem;
             --vertical-padding-small: 2.5rem;

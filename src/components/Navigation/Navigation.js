@@ -1,5 +1,5 @@
-import React from "react"
-import style, { NavLink, Side, NavButton } from "./navigationStyles"
+import React, { useLayoutEffect, useState } from "react"
+import { NavLink, Side, NavButton, Nav } from "./navigationStyles"
 import { Link } from "gatsby"
 import chooseLang from "../../functions/chooseLang"
 
@@ -9,12 +9,24 @@ const links = [
   { link: "/kontakt", pl: "Kontakt", en: "Contact" },
 ]
 
-const Navigation = ({ className, lang }) => {
+const Navigation = ({ lang }) => {
+  const [navBackgrounVisible, setNavBackgroundVisible] = useState(false)
   const onLangClick = e => {
     lang.setLang(e.target.lang)
   }
+
+  const onScroll = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    setNavBackgroundVisible(scrollTop > 100)
+  }
+
+  useLayoutEffect(() => {
+    window.addEventListener("scroll", onScroll)
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
   return (
-    <nav className={className}>
+    <Nav backgroundVisible={navBackgrounVisible}>
       <Side>
         {["en", "pl"].map(e => (
           <NavButton
@@ -40,8 +52,8 @@ const Navigation = ({ className, lang }) => {
           </NavLink>
         ))}
       </Side>
-    </nav>
+    </Nav>
   )
 }
 
-export default style(Navigation)
+export default Navigation

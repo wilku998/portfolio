@@ -1,5 +1,6 @@
 export default {
-  colorGreyGreen: '237, 245, 235',
+  colorBlue1: "rgb(228, 238, 243)",
+  colorBlue2: "rgb(199, 218, 221);",
   colorGrey1: "#FBFBFB",
   colorGrey2: "#f6f6f6",
   colorGrey3: "#e7e7e7",

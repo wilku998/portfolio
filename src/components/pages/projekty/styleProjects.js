@@ -26,7 +26,7 @@ export const ProjectTitle = styled(Title)`
   line-height: 1.6;
   &:after {
     ${({ theme }) => `
-      background-color: ${theme.colorGrey2};
+      background-color: ${theme.colorGrey1};
     `}
   }
 `

@@ -18,9 +18,9 @@ export default Header => styled(Header)`
     top: 0;
     left: 0;
     height: 100%;
-    width: 35%;
+    width: 30%;
     ${({ theme }) => `
-      background-color: rgb(${theme.colorGreyGreen});
+      background-color: ${theme.colorBlue2};
     `}
   }
 `

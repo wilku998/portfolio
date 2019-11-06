@@ -12,9 +12,7 @@ import useScrollReset from "../hooks/useScrollReset"
 const Index = ({ smoothScroll, lang }) => {
   const skills = useSkillsQuery(lang)
   const article = useArticleQuery(lang)
-
   const imagesLoaded = useLoadImages([
-    article.image,
     "/images/skills-background.jpg",
   ])
 

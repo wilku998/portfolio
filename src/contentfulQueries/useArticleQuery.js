@@ -7,11 +7,6 @@ export default lang => {
       allContentfulArticle {
         edges {
           node {
-            image {
-              fluid {
-                src
-              }
-            }
             paragraphPl {
               paragraphPl
             }
@@ -34,7 +29,6 @@ export default lang => {
         en: node.paragraphEn.paragraphEn,
       },
       lang
-    ),
-    image: node.image.fluid.src,
+    )
   }
 }

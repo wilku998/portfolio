@@ -12,8 +12,8 @@ export const ImageContent = styled.div`
   will-change: transform;
   ${({ src, theme }) => `
       left: 0;
-      top: -50px;
-      height: calc(100% + 100px);
+      top: -100px;
+      height: calc(100% + 200px);
       width: 100%;
       background: url("${src}") center/cover no-repeat;
   `}
@@ -26,7 +26,8 @@ export default ({ src, smoothScroll }) => {
     if (smoothScroll) {
       smoothScroll.addItem({
         el: imageRef.current,
-        maxValue: 50,
+        maxValue: 100,
+        ease: .1,
         setTransform: val => `translate3d(0,${val}px,0)`,
       })
     }

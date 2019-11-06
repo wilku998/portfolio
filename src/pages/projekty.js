@@ -18,7 +18,7 @@ const Main = styled.main`
   overflow: hidden;
   padding-top: 10rem;
   ${({ theme }) => `
-    background-color: ${theme.colorGrey1};
+    background-color: ${theme.colorGrey2};
   `}
 `
 

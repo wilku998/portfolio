@@ -1,20 +1,17 @@
-import { Link } from "gatsby"
 import styled from "styled-components"
 import { fullSizeAbsolute } from "../../../../styles/mixins"
 import Title from "../../../abstracts/Title"
+import GhostButton from "../../../abstracts/GhostButton"
 
 export default AboutMe => styled(AboutMe)`
   position: relative;
-  margin-bottom: 30rem;
-  ${({ theme }) => theme.media.small`
-    margin-bottom: 60rem;
-  `}
+  margin-bottom: 20rem;
 `
 
 //content
 export const Content = styled.div`
   position: relative;
-  width: 65%;
+  width: 70%;
   margin-left: auto;
   display: flex;
   flex-direction: column;
@@ -42,7 +39,7 @@ export const Content = styled.div`
 
 export const Paragraph = styled.p`
   line-height: 1.6;
-  max-width: 40rem;
+  max-width: 80%;
   margin: 3rem 0;
 `
 
@@ -56,52 +53,18 @@ export const AboutMeTitle = styled(Title)`
   `}
 `
 
-export const AboutMeLink = styled(Link)`
+export const AboutMeLinkButton = styled(GhostButton)`
   font-size: 1.4rem;
-  position: relative;
-  &:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -0.5rem;
-    height: 1px;
-    width: 100%;
+  & > span {
+    position: relative;
+    z-index: 10;
   }
 
-  ${({ theme }) => `
-    color: ${theme.colorGrey4} !important;
-
-    &:after{
-      background-color: ${theme.colorGrey3_4}
-    }
-  `}
-`
-
-export const AbouteMeImage = styled.div`
-  position: absolute;
-  bottom: -10rem;
-  left: -17%;
-  height: 100%;
-  width: 34%;
-  max-height: 50rem;
-  ${({ theme }) => theme.media.big`
-    left: -20%;
-    width: 40%;
-    max-height: 60rem;
-  `}
-  ${({ theme }) => theme.media.medium`
-    left: -30vw;
-    width: 35vw;
-  `}
-  ${({ theme }) => theme.media.small`
-    bottom: initial;
-    left: 0;
-    top: calc(100% - 50px);
-    width: 100%;
-    height: 70rem;
+  &:after{
     z-index: 1;
-  `}
+  }
 `
+
 
 export const RotatedTitle = styled.h1`
   position: absolute;
@@ -113,7 +76,7 @@ export const RotatedTitle = styled.h1`
   ${({ theme }) => `
     color: ${theme.colorGrey5};
   `}
-  ${({ theme }) => theme.media.medium`
+  ${({ theme }) => theme.media.small`
     display: none;
   `}
 `
