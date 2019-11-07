@@ -56,11 +56,11 @@ const Loader = styled.div`
 
 export default () => (
   <LoaderContainer>
-    <Loader>
+    {/* <Loader>
       <div />
       <div />
       <div />
       <div />
-    </Loader>
+    </Loader> */}
   </LoaderContainer>
 )
