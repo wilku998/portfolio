@@ -2,8 +2,9 @@ import Item from "./Item"
 import mathUtils from "./mathUtils"
 
 export class SmoothScroll {
-  constructor(body, scrollable) {
+  constructor(body, scrollable, isMobile) {
     this.DOM = { body, scrollable }
+    this.isMobile = isMobile
     this.callbacks = []
     this.items = []
     this.renderedStyles = {
@@ -15,9 +16,12 @@ export class SmoothScroll {
           window.pageYOffset || document.documentElement.scrollTop,
       },
     }
-    this.setSize()
-    this.update()
-    this.initEvents()
+    if (!this.isMobile) {
+      this.setSize()
+      this.update()
+      this.initEvents()
+    }
+
     requestAnimationFrame(() => this.render())
   }
   addCallback(callback) {
@@ -37,8 +41,8 @@ export class SmoothScroll {
     this.layout()
   }
 
-  resetRequest(){
-    window.scrollTo(0,0)
+  resetRequest() {
+    window.scrollTo(0, 0)
     this.update()
   }
 
@@ -54,15 +58,17 @@ export class SmoothScroll {
     window.addEventListener("resize", () => this.setSize())
   }
   render() {
-    for (const key in this.renderedStyles) {
-      this.renderedStyles[key].current = this.renderedStyles[key].setValue();
-      this.renderedStyles[key].previous =  mathUtils.lerp(
-        this.renderedStyles[key].previous,
-        this.renderedStyles[key].current,
-        this.renderedStyles[key].ease
-      )
+    if (!this.isMobile) {
+      for (const key in this.renderedStyles) {
+        this.renderedStyles[key].current = this.renderedStyles[key].setValue()
+        this.renderedStyles[key].previous = mathUtils.lerp(
+          this.renderedStyles[key].previous,
+          this.renderedStyles[key].current,
+          this.renderedStyles[key].ease
+        )
+      }
+      this.layout()
     }
-    this.layout();
 
     for (const item of this.items) {
       if (item.isVisible) {
@@ -73,11 +79,11 @@ export class SmoothScroll {
     requestAnimationFrame(() => this.render())
   }
 
-  blockScroll(){
+  blockScroll() {
     this.DOM.scrollable.style.overflow = "hidden"
     document.body.style.overflow = "hidden"
   }
-  unblockScroll(){
+  unblockScroll() {
     document.body.style.overflow = "visible"
     this.DOM.scrollable.style.overflow = "visible"
   }

@@ -22,7 +22,7 @@ export const Nav = styled.nav`
     content: "";
     transition: all .4s;
     ${fullSizeAbsolute}
-    opacity: .5;
+    opacity: .75;
     ${({ theme }) => `
       background-color: ${theme.colorGrey1};
     `}

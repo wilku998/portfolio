@@ -9,7 +9,7 @@ export default {
   colorGrey4: "#606060",
   colorGrey5: "#2E2E2E", //big fonts
   colorGrey6: "#1A1A1A", //regular text
-  navigationHeight: "4.5rem",
+  navigationHeight: "4rem",
   backgroundBlockWidth: "35rem",
   footerHeight: "40rem",
 }

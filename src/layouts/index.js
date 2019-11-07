@@ -15,15 +15,23 @@ const Container = styled.div`
 `
 
 const Scrollable = styled.div`
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-font-smoothing: subpixel-antialiased;
-  position: fixed;
   z-index: 10;
-  left: 0;
-  width: 100%;
-  height: 100%;
   padding: 0 var(--body-padding);
+
+  ${({ isTouchDevice }) =>
+    isTouchDevice
+      ? `
+      position: relative;
+      ` : `
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-font-smoothing: subpixel-antialiased;
+      position: fixed;
+      left: 0;
+      width: 100%;
+      height: 100%;
+  `}
+
   & > * {
     position: relative;
     z-index: 10;
@@ -38,27 +46,30 @@ export const Context = createContext()
 
 export default ({ children }) => {
   const [smoothScroll, setSmoothScroll] = useState()
-  const [isLoading, setIsLoading] = useState(false)
-
+  const [isLoading, setIsLoading] = useState(true)
   const [lang, setLang] = useState("pl")
   const body = useRef()
   const scrollable = useRef()
-  useLayoutEffect(() => {
-    setSmoothScroll(new SmoothScroll(body.current, scrollable.current))
-  }, [])
-
   const langObj = { setLang, lang }
   const loadingObj = { isLoading, setIsLoading }
+  const isTouchDevice = !!(navigator.maxTouchPoints || 'ontouchstart' in document.documentElement);
+
+  useLayoutEffect(() => {
+    setSmoothScroll(
+      new SmoothScroll(body.current, scrollable.current, isTouchDevice)
+    )
+  }, [])
+
   return (
     <Context.Provider
       value={{ smoothScroll, lang: langObj, isLoading: loadingObj }}
     >
       <Body ref={body}>
         <ThemeProvider theme={{ ...theme, media }}>
-          {(isLoading || !smoothScroll) && <Loader />}
+          {isLoading && <Loader />}
           <GlobalStyleComponent />
           {smoothScroll && <Navigation lang={langObj} />}
-          <Scrollable ref={scrollable}>
+          <Scrollable isTouchDevice={isTouchDevice} ref={scrollable}>
             {smoothScroll && <Container>{children}</Container>}
           </Scrollable>
           {smoothScroll && <Footer lang={langObj} />}
