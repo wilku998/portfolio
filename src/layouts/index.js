@@ -68,7 +68,7 @@ export default ({ children }) => {
         <ThemeProvider theme={{ ...theme, media }}>
           {isLoading && <Loader />}
           <GlobalStyleComponent />
-          {smoothScroll && <Navigation lang={langObj} />}
+          <Navigation lang={langObj} />
           <Scrollable isTouchDevice={isTouchDevice} ref={scrollable}>
             {smoothScroll && <Container>{children}</Container>}
           </Scrollable>

@@ -43,10 +43,10 @@ export const Item = styled.div`
 
 export const Desc = styled.p`
   margin: 2rem 0 4rem 0;
-  /* font-size: 1.4rem; */
 `
 
 export const ListItem = styled.li`
+  font-size: 1.4rem;
   position: relative;
   &:not(:first-child) {
     margin-top: 2rem;
