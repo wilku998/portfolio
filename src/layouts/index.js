@@ -52,7 +52,7 @@ export default ({ children }) => {
   const scrollable = useRef()
   const langObj = { setLang, lang }
   const loadingObj = { isLoading, setIsLoading }
-  const isTouchDevice = !!(navigator.maxTouchPoints || 'ontouchstart' in document.documentElement);
+  const isTouchDevice = !!(navigator ? navigator.maxTouchPoints : false || 'ontouchstart' in document.documentElement);
 
   useLayoutEffect(() => {
     setSmoothScroll(
