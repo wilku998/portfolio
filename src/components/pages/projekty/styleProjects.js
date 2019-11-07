@@ -11,7 +11,7 @@ export default Project => styled(Project)`
   display: flex;
   flex-direction: column;
   transition: all 0.5s ease-in-out;
-  padding: 0 var(--vertical-padding) 30rem var(--vertical-padding);
+  padding: 0 var(--vertical-padding);
   font-size: 1.4rem;
 `
 
@@ -98,6 +98,9 @@ export const LinksContainer = styled.div`
 export const Gallery = styled.div`
   margin-top: 10rem;
   position: relative;
+  ${({theme}) => theme.media.small`
+    margin-top: 5rem;
+  `}
 `
 
 export const FakeImage = styled.img`
@@ -126,7 +129,7 @@ const imageMobile = css`
     }
 
     &:not(:last-child){
-      margin-bottom: 2rem;
+      margin-bottom: 4rem;
     }
   `}
 `
@@ -186,7 +189,7 @@ export const MoveIcon = styled(ReactSVG)`
   padding: 0 1.5rem;
   cursor: pointer;
   ${({ theme }) => `
-    fill: ${theme.colorGrey5};
+    fill: ${theme.colorBlue3};
   `}
 
   & svg {

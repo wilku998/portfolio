@@ -35,6 +35,7 @@ export default styled(Contact)`
   z-index: 20;
   height: 40rem;
   width: 100%;
+  padding: 0 var(--vertical-padding);
   display: flex;
   flex-direction: column;
   justify-content: center;

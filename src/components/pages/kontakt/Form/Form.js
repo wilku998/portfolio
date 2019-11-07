@@ -95,12 +95,23 @@ const Form = ({ className, lang }) => {
         subject: title,
         text: message,
       }
+      setInfo(
+        chooseLang(
+          {
+            pl: "Wysyłanie wiadomości w toku.",
+            en: "Sending message in progress.",
+          },
+          lang
+        )
+      )
+      
       const response = await ajax(
         "POST",
         "https://wilkmailsender.herokuapp.com/mails",
         data,
         201
       )
+
       if (response.error) {
         setInfo(
           chooseLang(

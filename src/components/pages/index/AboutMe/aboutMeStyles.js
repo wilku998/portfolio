@@ -6,6 +6,9 @@ import GhostButton from "../../../abstracts/GhostButton"
 export default AboutMe => styled(AboutMe)`
   position: relative;
   margin-bottom: 20rem;
+  ${({theme}) => theme.media.small`
+    margin-bottom: 5rem;
+  `}
 `
 
 //content

@@ -25,9 +25,11 @@ export const Label = styled.label`
 export const Input = styled.input`
   padding: 1rem;
   font-size: 1.4rem !important;
-  background: none;
   border-left: none;
   border-right: none;
+  &, &:valid, &:invalid, &:-webkit-autofill {
+    background: none !important;
+  }
   ${({ theme }) => `
         border-top: 1px solid ${theme.colorGrey3_4};
         border-bottom: 1px solid ${theme.colorGrey3_4};

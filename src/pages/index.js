@@ -9,12 +9,10 @@ import useArticleQuery from "../contentfulQueries/useArticleQuery"
 import Contact from "../components/pages/index/Contact/Contact"
 import useScrollReset from "../hooks/useScrollReset"
 
-const Index = ({ smoothScroll, lang }) => {
+const Index = ({ smoothScroll, lang, isLoading }) => {
   const skills = useSkillsQuery(lang)
   const article = useArticleQuery(lang)
-  const imagesLoaded = useLoadImages([
-    "/images/skills-background.jpg",
-  ])
+  const imagesLoaded = useLoadImages(["/images/skills-background.jpg"], isLoading)
 
   useLayoutEffect(() => {
     if (imagesLoaded) {
@@ -22,26 +20,24 @@ const Index = ({ smoothScroll, lang }) => {
     }
   }, [imagesLoaded, lang.lang])
 
-  useScrollReset(smoothScroll);
-  
+  useScrollReset(smoothScroll)
+
   return (
     <main>
-      {imagesLoaded && (
-        <>
-          <Header smoothScroll={smoothScroll} />
-          <AboutMe smoothScroll={smoothScroll} article={article} lang={lang} />
-          <Skills smoothScroll={smoothScroll} skills={skills} lang={lang} />
-          <Contact lang={lang} />
-        </>
-      )}
+      <Header smoothScroll={smoothScroll} />
+      <AboutMe smoothScroll={smoothScroll} article={article} lang={lang} />
+      <Skills smoothScroll={smoothScroll} skills={skills} lang={lang} />
+      <Contact lang={lang} />
     </main>
   )
 }
 
 export default () => (
   <Context.Consumer>
-    {({ smoothScroll, lang }) =>
-      smoothScroll && <Index smoothScroll={smoothScroll} lang={lang} />
+    {({ smoothScroll, lang, isLoading }) =>
+      smoothScroll && (
+        <Index smoothScroll={smoothScroll} lang={lang} isLoading={isLoading} />
+      )
     }
   </Context.Consumer>
 )
