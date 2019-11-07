@@ -9,12 +9,11 @@ import useArticleQuery from "../contentfulQueries/useArticleQuery"
 import Contact from "../components/pages/index/Contact/Contact"
 import useScrollReset from "../hooks/useScrollReset"
 
-const Index = ({ smoothScroll, lang, isLoading }) => {
+const Index = ({ smoothScroll, lang }) => {
   const skills = useSkillsQuery(lang)
   const article = useArticleQuery(lang)
   const imagesLoaded = useLoadImages(
-    ["/images/skills-background.jpg"],
-    isLoading
+    ["/images/skills-background.jpg"]
   )
 
   useLayoutEffect(() => {
@@ -37,8 +36,8 @@ const Index = ({ smoothScroll, lang, isLoading }) => {
 
 export default () => (
   <Context.Consumer>
-    {({ smoothScroll, lang, isLoading }) => (
-      <Index smoothScroll={smoothScroll} lang={lang} isLoading={isLoading} />
+    {({ smoothScroll, lang }) => (
+      <Index smoothScroll={smoothScroll} lang={lang} />
     )}
   </Context.Consumer>
 )

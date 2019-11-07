@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react"
 
-export default (images, isLoading) => {
+export default (images) => {
   const [imagesLoaded, setImagesLoaded] = useState(false)
 
   useEffect(() => {
-    isLoading.setIsLoading(true)
     let loadedImages = 0
     images.forEach(imgUrl => {
       let img = new Image()
@@ -12,7 +11,6 @@ export default (images, isLoading) => {
       img.onload = () => {
         loadedImages++
         if (loadedImages === images.length) {
-          isLoading.setIsLoading(false)
           setImagesLoaded(true)
         }
       }

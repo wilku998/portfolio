@@ -6,7 +6,6 @@ import GlobalStyleComponent from "../styles/GlobalStyleComponent"
 import Footer from "../components/Footer/Footer"
 import { SmoothScroll } from "../smoothScroll/SmoothScroll"
 import media from "../styles/media"
-import Loader from "../components/Loader/Loader"
 
 const Container = styled.div`
   position: relative;
@@ -46,13 +45,11 @@ export const Context = createContext()
 
 export default ({ children }) => {
   const [smoothScroll, setSmoothScroll] = useState()
-  const [isLoading, setIsLoading] = useState(true)
   const [isTouchDevice, setIsTouchDevice] = useState(true)
   const [lang, setLang] = useState("pl")
   const body = useRef()
   const scrollable = useRef()
   const langObj = { setLang, lang }
-  const loadingObj = { isLoading, setIsLoading }
 
   useLayoutEffect(() => {
     const isTouchDevice_ = !!(navigator.maxTouchPoints || 'ontouchstart' in document.documentElement);
@@ -64,11 +61,10 @@ export default ({ children }) => {
 
   return (
     <Context.Provider
-      value={{ smoothScroll, lang: langObj, isLoading: loadingObj }}
+      value={{ smoothScroll, lang: langObj }}
     >
       <Body ref={body}>
         <ThemeProvider theme={{ ...theme, media }}>
-          {isLoading && <Loader />}
           <GlobalStyleComponent />
           <Navigation lang={langObj} />
           <Scrollable isTouchDevice={isTouchDevice} ref={scrollable}>

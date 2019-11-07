@@ -30,7 +30,7 @@ const ProjectsContainer = styled.div`
   position: relative;
 `
 
-const Projects = ({ smoothScroll, lang, isLoading }) => {
+const Projects = ({ smoothScroll, lang }) => {
   const data = useStaticQuery(graphql`
     query {
       allContentfulProject(sort: { fields: [createdAt], order: ASC }) {
@@ -73,7 +73,7 @@ const Projects = ({ smoothScroll, lang, isLoading }) => {
 
   const images = []
   projectsData.forEach(project => project.images.forEach(e => images.push(e)))
-  const imagesLoaded = useLoadImages(images, isLoading)
+  const imagesLoaded = useLoadImages(images)
   useScrollReset(smoothScroll)
   const [position, setPosition] = useState(0)
   const selectedProject = useRef()
@@ -168,8 +168,8 @@ const Projects = ({ smoothScroll, lang, isLoading }) => {
 
 export default () => (
   <Context.Consumer>
-    {({ smoothScroll, lang, isLoading }) => (
-      <Projects smoothScroll={smoothScroll} lang={lang} isLoading={isLoading} />
+    {({ smoothScroll, lang }) => (
+      <Projects smoothScroll={smoothScroll} lang={lang} />
     )}
   </Context.Consumer>
 )
