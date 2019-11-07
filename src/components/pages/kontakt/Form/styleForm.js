@@ -27,9 +27,7 @@ export const Input = styled.input`
   font-size: 1.4rem !important;
   border-left: none;
   border-right: none;
-  &, &:valid, &:invalid, &:-webkit-autofill {
-    background: none !important;
-  }
+  background: none !important;
   ${({ theme }) => `
         border-top: 1px solid ${theme.colorGrey3_4};
         border-bottom: 1px solid ${theme.colorGrey3_4};

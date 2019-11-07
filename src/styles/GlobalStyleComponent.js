@@ -71,13 +71,24 @@ export default createGlobalStyle`
         &:disabled{
             cursor: default;
         }
+
+        &::-moz-focus-inner {
+            border: 0;
+        }
     }
     
     a, a:visited{
         color: inherit;
         text-decoration: none;
         display: inline-block;
+        &:focus{
+            outline: none;
+        }
     };
+
+    a::-moz-focus-inner {
+        border: 0;
+    }
 
     .navLinkActive{
         &:after{
