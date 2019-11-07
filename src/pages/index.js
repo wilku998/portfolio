@@ -12,7 +12,10 @@ import useScrollReset from "../hooks/useScrollReset"
 const Index = ({ smoothScroll, lang, isLoading }) => {
   const skills = useSkillsQuery(lang)
   const article = useArticleQuery(lang)
-  const imagesLoaded = useLoadImages(["/images/skills-background.jpg"], isLoading)
+  const imagesLoaded = useLoadImages(
+    ["/images/skills-background.jpg"],
+    isLoading
+  )
 
   useLayoutEffect(() => {
     if (imagesLoaded) {
@@ -34,10 +37,8 @@ const Index = ({ smoothScroll, lang, isLoading }) => {
 
 export default () => (
   <Context.Consumer>
-    {({ smoothScroll, lang, isLoading }) =>
-      smoothScroll && (
-        <Index smoothScroll={smoothScroll} lang={lang} isLoading={isLoading} />
-      )
-    }
+    {({ smoothScroll, lang, isLoading }) => (
+      <Index smoothScroll={smoothScroll} lang={lang} isLoading={isLoading} />
+    )}
   </Context.Consumer>
 )

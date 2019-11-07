@@ -2,8 +2,8 @@ import Item from "./Item"
 import mathUtils from "./mathUtils"
 
 export class SmoothScroll {
-  constructor(body, scrollable, footer) {
-    this.DOM = { body, scrollable, footer }
+  constructor(body, scrollable) {
+    this.DOM = { body, scrollable }
     this.callbacks = []
     this.items = []
     this.renderedStyles = {

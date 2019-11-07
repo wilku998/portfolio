@@ -21,7 +21,7 @@ const Main = styled.main`
     background-color: ${theme.colorGrey2};
   `}
 
-  ${({theme}) => theme.media.small`
+  ${({ theme }) => theme.media.small`
     padding: 10rem 0;
   `}
 `
@@ -168,14 +168,8 @@ const Projects = ({ smoothScroll, lang, isLoading }) => {
 
 export default () => (
   <Context.Consumer>
-    {({ smoothScroll, lang, isLoading }) =>
-      smoothScroll && (
-        <Projects
-          smoothScroll={smoothScroll}
-          lang={lang}
-          isLoading={isLoading}
-        />
-      )
-    }
+    {({ smoothScroll, lang, isLoading }) => (
+      <Projects smoothScroll={smoothScroll} lang={lang} isLoading={isLoading} />
+    )}
   </Context.Consumer>
 )

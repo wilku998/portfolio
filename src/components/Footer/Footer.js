@@ -2,8 +2,8 @@ import React from "react"
 import style, { Item, PrivacyPolicy, ItemTitle } from "./footerStyles"
 import chooseLang from "../../functions/chooseLang"
 
-const Footer = React.forwardRef(({ className, lang }, ref) => (
-  <footer ref={ref} className={className}>
+const Footer = ({ className, lang }) => (
+  <footer className={className}>
     <PrivacyPolicy>
       {chooseLang(
         {
@@ -34,6 +34,6 @@ const Footer = React.forwardRef(({ className, lang }, ref) => (
       <span>+48 570 706 596</span>
     </Item>
   </footer>
-))
+)
 
 export default style(Footer)

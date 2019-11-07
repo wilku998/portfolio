@@ -48,7 +48,7 @@ const Contact = ({ smoothScroll, lang }) => {
 export default () => (
   <Context.Consumer>
     {({ smoothScroll, lang }) =>
-      smoothScroll && <Contact smoothScroll={smoothScroll} lang={lang} />
+      <Contact smoothScroll={smoothScroll} lang={lang} />
     }
   </Context.Consumer>
 )
