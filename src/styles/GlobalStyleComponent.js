@@ -47,6 +47,7 @@ export default createGlobalStyle`
         line-height: 1.4;
         position: relative;
         overflow-x: hidden;
+        min-height: 100vh;
         ${({ theme }) => `
           color: ${theme.colorGrey6};
           padding: 0 0 ${theme.footerHeight} 0;
