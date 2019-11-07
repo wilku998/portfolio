@@ -11,6 +11,7 @@ import Loader from "../components/Loader/Loader"
 const Container = styled.div`
   position: relative;
   z-index: 10;
+  min-height: 100vh;
 `
 
 const Scrollable = styled.div`
@@ -28,6 +29,10 @@ const Scrollable = styled.div`
     z-index: 10;
   }
 `
+
+const Body = styled.div`
+  min-height: 100vh;
+`;
 
 export const Context = createContext()
 
@@ -51,7 +56,7 @@ export default ({ children }) => {
     <Context.Provider
       value={{ smoothScroll, lang: langObj, isLoading: loadingObj }}
     >
-      <div ref={body}>
+      <Body ref={body}>
         <ThemeProvider theme={{ ...theme, media }}>
           {isLoading && <Loader />}
           <GlobalStyleComponent />
@@ -61,7 +66,7 @@ export default ({ children }) => {
           </Scrollable>
           <Footer lang={langObj} ref={footer} />
         </ThemeProvider>
-      </div>
+      </Body>
     </Context.Provider>
   )
 }
