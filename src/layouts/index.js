@@ -47,16 +47,18 @@ export const Context = createContext()
 export default ({ children }) => {
   const [smoothScroll, setSmoothScroll] = useState()
   const [isLoading, setIsLoading] = useState(true)
+  const [isTouchDevice, setIsTouchDevice] = useState(true)
   const [lang, setLang] = useState("pl")
   const body = useRef()
   const scrollable = useRef()
   const langObj = { setLang, lang }
   const loadingObj = { isLoading, setIsLoading }
-  const isTouchDevice = !!(navigator ? navigator.maxTouchPoints : false || 'ontouchstart' in document.documentElement);
 
   useLayoutEffect(() => {
+    const isTouchDevice_ = !!(navigator.maxTouchPoints || 'ontouchstart' in document.documentElement);
+    setIsTouchDevice(isTouchDevice_)
     setSmoothScroll(
-      new SmoothScroll(body.current, scrollable.current, isTouchDevice)
+      new SmoothScroll(body.current, scrollable.current, isTouchDevice_)
     )
   }, [])
 
