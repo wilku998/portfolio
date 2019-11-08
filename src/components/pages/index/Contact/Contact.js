@@ -33,16 +33,12 @@ const Contact = ({ className, lang }) => (
 export default styled(Contact)`
   position: relative;
   z-index: 20;
-  height: 40rem;
   width: 100%;
-  padding: 0 var(--vertical-padding);
+  padding: 10rem var(--vertical-padding);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   position: relative;
-  ${({ theme }) => `
-    background-color: ${theme.colorGrey1};
-  `}
 `

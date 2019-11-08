@@ -26,7 +26,7 @@ export const ProjectTitle = styled(Title)`
   line-height: 1.6;
   &:after {
     ${({ theme }) => `
-      background-color: ${theme.colorGrey1};
+      background-color: ${theme.colorGrey1_2};
     `}
   }
 `
@@ -86,6 +86,7 @@ export const Description = styled.div`
 `
 export const Link = styled(GhostButton)`
   font-size: 1.4rem;
+  background: rgba(255, 255, 255, .5);
   &:not(:last-child) {
     margin-right: 2rem;
   }

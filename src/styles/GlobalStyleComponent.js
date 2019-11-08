@@ -101,7 +101,7 @@ export default createGlobalStyle`
     main{
        min-height: 100vh;
        ${({ theme }) => `
-        background: ${theme.colorGrey2}
+        background: ${theme.colorGrey1}
       `}
     }
 

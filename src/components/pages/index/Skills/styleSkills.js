@@ -5,9 +5,6 @@ export default Skills => styled(Skills)`
   flex-direction: column;
   position: relative;
   z-index: 10;
-  ${({ theme }) => `
-    background-color: ${theme.colorGrey2};
-  `}
 `
 
 export const Content = styled.div`
@@ -16,9 +13,9 @@ export const Content = styled.div`
   height: 100%;
   max-width: 110rem;
   background: rgb(246, 246, 246, 0.6);
-
   display: flex;
   padding: 10rem var(--vertical-padding);
+  margin-left: auto;
   ${({ theme }) => theme.media.big_2`
     max-width: 100%;
     width: 100%;

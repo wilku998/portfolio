@@ -5,17 +5,20 @@ export const Nav = styled.nav`
   position: fixed;
   z-index: 20;
   top: 0;
-  left: var(--body-padding);
-  width: calc(100% - (2 * var(--body-padding)));
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   line-height: 1;
   font-size: 1.3rem;
   padding: 0 var(--vertical-padding-small);
+  box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.01);
 
   ${({ theme }) => `
     height: ${theme.navigationHeight};
+    background-color: ${theme.colorGrey1};
+    border-bottom: 1px solid ${theme.colorGrey3};
   `}
 
   &:after{
@@ -27,9 +30,9 @@ export const Nav = styled.nav`
       background-color: ${theme.colorGrey1};
     `}
     ${({ backgroundVisible }) => backgroundVisible ? `
-      transform: translateY(0);
+      // transform: translateY(0);
     ` : `
-      transform: translateY(-100%);
+      // transform: translateY(-100%);
     `}
   }
 
@@ -77,7 +80,7 @@ export const NavLink = styled(NavItem)`
   }
   &:after {
     ${({ theme }) => `
-      background-color: ${theme.colorBlue2};
+      background-color: ${theme.colorBlue1};
     `}
   }
 `

@@ -3,8 +3,8 @@ import styled from "styled-components"
 export default Footer => styled(Footer)`
   position: fixed;
   bottom: 0;
-  left: var(--body-padding);
-  width: calc(100% - (var(--body-padding) * 2));
+  left: 0;
+  width: 100%;
   display: flex;
   padding: 5rem var(--vertical-padding) 2rem var(--vertical-padding);
   font-size: 1.4rem;
@@ -12,7 +12,7 @@ export default Footer => styled(Footer)`
 
   ${({ theme }) => `
     height: ${theme.footerHeight};
-    background: ${theme.colorGrey3};
+    background: ${theme.colorGrey1};
   `}
 
   ${({ theme }) => theme.media.medium`
@@ -24,10 +24,10 @@ export default Footer => styled(Footer)`
     position: absolute;
     top: 0;
     right: 0;
-    width: 50%;
+    width: 30%;
     height: 100%;
     ${({ theme }) => `
-      background: ${theme.colorGrey3_4};
+      background: ${theme.colorGrey1_2};
     `}
   }
 

@@ -1,34 +1,37 @@
 import React, { useLayoutEffect } from "react"
 import styled from "styled-components"
+import ReactSVG from "react-svg"
 import Form from "../components/pages/kontakt/Form/Form"
 import { Context } from "../layouts"
 import useScrollReset from "../hooks/useScrollReset"
+import { centerAbsolute } from "../styles/mixins"
 
 const Main = styled.main`
   min-height: 100vh;
   padding: 10rem var(--vertical-padding);
   display: flex;
-  align-items: center;
-  position: relative;
+  justify-content: space-between;
   overflow: hidden;
   ${({ theme }) => `
-    background-color: ${theme.colorGrey2};
+    // background: linear-gradient(to right bottom, ${theme.colorGrey2}, ${theme.colorGrey3});
   `}
-  
-  & > * {
-    z-index: 10;
-  }
-  &:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 20%;
-    height: 70%;
+`
+
+const Icon = styled(ReactSVG)`
+  flex: 1;
+  position: relative;
+  margin-left: var(--vertical-padding);
+  & svg {
+    width: 60%;
+    ${centerAbsolute}
     ${({ theme }) => `
-      background-color: ${theme.colorBlue1};
-    `}
+      fill: ${theme.colorGrey1_2};
+    `};
   }
+
+  ${({ theme }) => theme.media.big_2`
+    display: none;
+  `}
 `
 
 const Contact = ({ smoothScroll, lang }) => {
@@ -41,14 +44,15 @@ const Contact = ({ smoothScroll, lang }) => {
   return (
     <Main>
       <Form lang={lang} />
+      <Icon src="/svgs/paper-plane.svg" />
     </Main>
   )
 }
 
 export default () => (
   <Context.Consumer>
-    {({ smoothScroll, lang }) =>
+    {({ smoothScroll, lang }) => (
       <Contact smoothScroll={smoothScroll} lang={lang} />
-    }
+    )}
   </Context.Consumer>
 )

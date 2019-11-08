@@ -11,17 +11,20 @@ const Container = styled.div`
   position: relative;
   z-index: 10;
   min-height: 100vh;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.02);
+  ${({ theme }) => `
+    border-bottom: 1px solid ${theme.colorGrey3};
+  `}
 `
 
 const Scrollable = styled.div`
   z-index: 10;
-  padding: 0 var(--body-padding);
-
   ${({ isTouchDevice }) =>
     isTouchDevice
       ? `
       position: relative;
-      ` : `
+      `
+      : `
       will-change: transform;
       backface-visibility: hidden;
       -webkit-font-smoothing: subpixel-antialiased;
@@ -52,7 +55,9 @@ export default ({ children }) => {
   const langObj = { setLang, lang }
 
   useLayoutEffect(() => {
-    const isTouchDevice_ = !!(navigator.maxTouchPoints || 'ontouchstart' in document.documentElement);
+    const isTouchDevice_ = !!(
+      navigator.maxTouchPoints || "ontouchstart" in document.documentElement
+    )
     setIsTouchDevice(isTouchDevice_)
     setSmoothScroll(
       new SmoothScroll(body.current, scrollable.current, isTouchDevice_)
@@ -60,9 +65,7 @@ export default ({ children }) => {
   }, [])
 
   return (
-    <Context.Provider
-      value={{ smoothScroll, lang: langObj }}
-    >
+    <Context.Provider value={{ smoothScroll, lang: langObj }}>
       <Body ref={body}>
         <ThemeProvider theme={{ ...theme, media }}>
           <GlobalStyleComponent />

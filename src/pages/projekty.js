@@ -18,7 +18,7 @@ const Main = styled.main`
   overflow: hidden;
   padding: 10rem 0 15rem 0;
   ${({ theme }) => `
-    background-color: ${theme.colorGrey2};
+    // background: linear-gradient(to right bottom, ${theme.colorGrey1_2}, ${theme.colorGrey3});
   `}
 
   ${({ theme }) => theme.media.small`

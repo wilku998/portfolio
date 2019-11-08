@@ -12,9 +12,10 @@ import useScrollReset from "../hooks/useScrollReset"
 const Index = ({ smoothScroll, lang }) => {
   const skills = useSkillsQuery(lang)
   const article = useArticleQuery(lang)
-  const imagesLoaded = useLoadImages(
-    ["/images/skills-background.jpg"]
-  )
+  const imagesLoaded = useLoadImages([
+    "/images/skills.jpg",
+    "/images/header.jpg",
+  ])
 
   useLayoutEffect(() => {
     if (imagesLoaded) {
